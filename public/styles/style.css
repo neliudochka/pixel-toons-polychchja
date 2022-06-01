@@ -1,3 +1,70 @@
 body {
-    background-color: aquamarine;
+    color:azure;
+    background-color: rgb(171, 58, 6);
+    font-size: 15pt;
+    min-height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100hv;
+    width: 100hv;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: rgb(39, 171, 6);
+
+  }
+
+.navigation-bar {
+    color:whitesmoke;
+    background-color: rgb(60, 40, 31);
+    padding: 0.7em;
+    border: 0.01em ridge rgb(247, 247, 196);
+}
+
+.left-bar {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(60, 40, 31);
+    color:whitesmoke;
+    padding: 1em;
+    border-right: 0.01em solid rgb(247, 247, 196);
+}
+
+.undo-redo-buttons img {
+    background-color: rgb(122, 10, 58);
+    width: 7em;
+    height: 7em;
+}
+
+.tools-bar {
+    padding-top: 0.5em;
+}
+
+.canvas-container {
+    background-color: rgb(230, 21, 66);
+    color:whitesmoke;
+    padding: 1em 1em 100% 1em;
+    border-right: 0.01em solid rgb(247, 247, 196);
+}
+
+.right-bar {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(60, 40, 31);
+    padding: 1em;
+    border: 0.01em solid rgb(247, 247, 196);
+}
+
+span {
+    border: 0.01em solid rgb(6, 6, 5);
+    background-color:rgb(68, 12, 12);
+    padding: 0.2em;
+}
+
+span:hover {
+    color:rgb(60, 40, 31);
+    background-color: rgb(240, 204, 204);
 }

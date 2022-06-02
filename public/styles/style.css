@@ -1,3 +1,6 @@
+html{
+    overflow: hidden;
+}
 body {
     color:azure;
     background-color: rgb(171, 58, 6);
@@ -8,12 +11,11 @@ body {
 }
 
 .container {
-    height: 100hv;
-    width: 100hv;
+    height: 100vh;
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    background-color: rgb(39, 171, 6);
+    background-color: rgb(79, 71, 71);
 
   }
 
@@ -44,10 +46,10 @@ body {
 }
 
 .canvas-container {
-    background-color: rgb(230, 21, 66);
+    background-color: rgba(230, 21, 66, 0.344);
     color:whitesmoke;
-    padding: 1em 1em 100% 1em;
-    border-right: 0.01em solid rgb(247, 247, 196);
+    padding: 1em;
+    border: 0.01em solid rgb(247, 247, 196);
 }
 
 .right-bar {
@@ -58,13 +60,14 @@ body {
     border: 0.01em solid rgb(247, 247, 196);
 }
 
-span {
+.button {
     border: 0.01em solid rgb(6, 6, 5);
     background-color:rgb(68, 12, 12);
     padding: 0.2em;
 }
 
-span:hover {
+.button:hover {
     color:rgb(60, 40, 31);
     background-color: rgb(240, 204, 204);
 }
+

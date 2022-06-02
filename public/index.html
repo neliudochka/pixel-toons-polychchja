@@ -8,34 +8,45 @@
 
     <body>
         <div class="navigation-bar">
-            <span class="button" >CREATE</span>
-            <span>CLEAR</span>
-            <span>EXPORT</span>
+            <span class="button" id="create-button">CREATE</span>
+            <span class="button" id="clear-button">CLEAR</span>
+            <span class="button">EXPORT</span>
         </div>
         <div class="container">
             <div class="left-bar">
                 <div class="undo-redo-buttons">
-                    <button><img src="./images/undo.png" alt="UNDO" title="UNDO"></button>
-                    <button><img src="./images/redo.png" alt="REDO" title="REDO"></button>
+                    <img src="./images/undo.png" alt="UNDO" title="UNDO" class="button">
+                    <img src="./images/redo.png" alt="REDO" title="REDO" class="button">
                 </div>
                 <div class="tools-bar">
                     <span>TOOLS</span>
                     <hr>
-                    <div>PENCIL</div>
-                    <div>ERASER</div>
-                    <div>BUCKET FILL</div>
+                    <div class="button">PENCIL</div>
+                    <div class="button">ERASER</div>
+                    <div class="button">BUCKET FILL</div>
                 </div>
             </div>
 
-            <div class="canvas-container">CANVAS</div>
+            <div class="canvas-container" id="canvas">CANVAS
+
+            </div>
 
             <div class="right-bar">
                 <div class="algorithm-bar">
                     <span>ALGORITHMS</span>
                     <hr>
-                    <div>FIRST</div>
+                    <div class="button">FIRST</div>
                 </div>
             </div>
         </div>
+
+        
+            <script>
+              document.body.appendChild(elt("button", {
+                onclick: () => console.log("click")
+              }, "The button"));
+            </script>
+          
+
     </body>
 </html>

@@ -1,4 +1,4 @@
-//переписати через next()?
+//переписати через Symbol.iterator?
 
 class Picture {
   constructor(width, height, pixels) {
@@ -33,3 +33,4 @@ function updateState(state, action) {
 }
 
 export {Picture};
+export {updateState};

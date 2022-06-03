@@ -1,9 +1,23 @@
+/*
 window.onload = () => {
   console.log('Example loaded successfully!');
 };
 
+
+  let state = {
+    tool: "draw",
+    color: "#000000",
+    picture: Picture.empty(60, 30, "#f0f0f0")
+  };
+  let app = new PixelEditor(state, {
+    tools: {draw, fill, rectangle, pick},
+    controls: [ToolSelect, ColorSelect],
+    dispatch(action) {
+      state = updateState(state, action);
+      app.syncState(state);
+    }
+  });
+  document.querySelector("div").appendChild(app.dom);
+*/
 //canvas
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-context.fillStyle = 'red';
-context.fillRect(100, 10, 100, 50);
+

@@ -2,8 +2,8 @@ const brushColor = '#0000FF';
 
 //canvas parametrs
 const pixelSize = 50;
-const canvasWidth = 5;
-const canvasHeight = 5;
+const canvasWidth = 3;
+const canvasHeight = 6;
 const canvasColor1 = '#FFFFFF';
 const canvasColor2 = '#f7c0bc';
 
@@ -31,7 +31,6 @@ function backGr (width, height) {
   const pixels = new Array(width*height).fill(canvasColor1);
   for (let index = 0; index < width*height; index += width) {
     if((index/width)%2 === 0) {
-      console.log(index);
       for (let i = 0; i < width; i++) {
         if (i%2 === 0) pixels[index+i] = canvasColor2;
       }
@@ -61,11 +60,7 @@ function createCanvas (picture, canvas) {
 
 createCanvas(picture, canvas);
 
-console.log(canvas.getBoundingClientRect());
-
 canvas.addEventListener("mousedown", getMousePosition);
-
-
 
 function getMousePosition (event) {
   const canPos = canvas.getBoundingClientRect();
@@ -86,5 +81,24 @@ function changePixelColor (x, y) {
 }
 
 
+//algorithms
+//переписати так, щоб фон фон продовжував йти шахмоткою?
 
+function reflectCanvas (picture) {
+  const newPixels = [];
+  for(let index = 0; index < picture.width*picture.height; index += picture.width) {
+    const row = [];
+    for(let i = 0; i < picture.width; i++) {
+      row[i] = picture.pixels[index+i];
+    }
+    newPixels.push(...row);
+    newPixels.push(...row.reverse());
+  }
+  const newPicture = new Picture(2*picture.width, picture.height, newPixels);
+  return newPicture;
+}
 
+const reflectButton = document.getElementById("reflect");
+reflectButton.addEventListener("mousedown", () => createCanvas(reflectCanvas(picture), canvas));
+
+//setTimeout(() => createCanvas(reflectCanvas(picture), canvas), "10000");

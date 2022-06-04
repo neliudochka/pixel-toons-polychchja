@@ -1,5 +1,11 @@
-const pixelSize = 20;
 const brushColor = '#0000FF';
+
+//canvas parametrs
+const pixelSize = 50;
+const canvasWidth = 5;
+const canvasHeight = 5;
+const canvasColor1 = '#FFFFFF';
+const canvasColor2 = '#f7c0bc';
 
 let canvas = document.createElement('canvas');
 let canvasContainer = document.getElementById('canvas-container');
@@ -8,14 +14,38 @@ canvasContainer.appendChild(canvas);
 const ctx = canvas.getContext('2d');
 ctx.fillStyle = 'green';
 
-const picture = {
-  height: 5,
-  width: 5,
-  pixels: ['#000000', '#000000', '#FFFFFF','#000000','#FFFFFF','#000000','#FFFFFF','#000000','#FFFFFF'],
+class Picture {
+  constructor(width, height, pixels = []) {
+    this.width = width;
+    this.height = height;
+    this.pixels = pixels;
+  }
+  
   pixel(x, y){
     return this.pixels[x + y * this.width];
   }
-};
+}
+
+//background
+function backGr (width, height) {
+  const pixels = new Array(width*height).fill(canvasColor1);
+  for (let index = 0; index < width*height; index += width) {
+    if((index/width)%2 === 0) {
+      console.log(index);
+      for (let i = 0; i < width; i++) {
+        if (i%2 === 0) pixels[index+i] = canvasColor2;
+      }
+    }
+    else {
+      for (let i = 0; i < width; i++) {
+        if (i%2 != 0) pixels[index+i] = canvasColor2;
+      }
+    }
+  }
+  return pixels; 
+}
+
+const picture = new Picture( canvasWidth, canvasHeight, backGr(canvasWidth,canvasHeight));
 
 function createCanvas (picture, canvas) {
   canvas.width = picture.width * pixelSize;

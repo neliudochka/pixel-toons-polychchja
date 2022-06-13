@@ -113,4 +113,70 @@ function reflectCanvas (picture) {
 const reflectButton = document.getElementById("reflect");
 reflectButton.addEventListener("mousedown", () => createCanvas(reflectCanvas(picture), canvas));
 
-//setTimeout(() => createCanvas(reflectCanvas(picture), canvas), "10000");
+//
+//
+/*
+class Picture {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+    this.pixels = arrayRandom(width, height);
+  }
+}
+
+function arrayRandom (width, height) {
+  const array = new Array(width*height);
+  for (let i = 0; i < width*height; i++) {
+    array[i] = Math.round(Math.random());
+  }
+  return array;
+}
+
+function grid (picture){
+  const arr = picture.pixels;
+  const w = picture.width;
+  for (let j = 0; j < picture.width*picture.height; j += w) {
+      let arr1 = arr.slice(j, j+w)
+      console.log(arr1);
+  }
+}
+
+
+//gameoflive
+function gameOfLife (picture){
+  const firstGen = picture.pixels;
+  const arraySize = picture.width*picture.height;
+  const arrayWidth = picture.width;
+  const arrayHeight = picture.height;
+  const secondGen = new Array(arraySize);
+
+  //count alive neighbors for each cell
+
+  for (let i = 0; i < arraySize; i++) {
+    secondGen[i] = countAlive(firstGen, i, arrayWidth, arrayHeight)
+  }
+}
+
+function countAlive (array, index, w, size) {
+  let numAlive = 0;
+  const row = Math.trunc((index)/w)*w;
+  for (let j = row-w; j < row + w*2; j += w) {
+    for (let i = -1; i < 2; i++) {
+      numAlive += array[(w+i+index)%w+(size+j)%size];
+    }
+  }
+  numAlive -= array[index];
+  return numAlive;
+}
+
+
+
+
+
+//tests
+const p = new Picture(5,5);
+console.log({w: p.width, h: p.height, pixels: p.pixels});
+
+grid(p);
+console.log(countAlive(p.pixels, 4, 5, 25));
+*/

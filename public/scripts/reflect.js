@@ -27,4 +27,4 @@ function reflectPicture (picture) {
   return picture;
 }
 
- export { reflectPicture };
+export { reflectPicture };

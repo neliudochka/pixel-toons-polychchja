@@ -1,6 +1,6 @@
-import { gameOfLife } from "./algorithms/gameOfLife.js";
-import { reflectPicture } from "./algorithms/reflect.js";
-import { Picture, Cell, defaultBackground} from "./picture&components.js";
+import { gameOfLife } from "./gameOfLife.js";
+import { reflectPicture } from "./reflect.js";
+import { Picture, fillPicture, randomCells, deadCells} from "./picture&components.js";
 
 //canvas parametrs
 const options = {
@@ -12,22 +12,6 @@ const options = {
   brushColor: '#0000FF',
   palette: ['#FFFFFF','#fc3005','#dc2802','#9b1d02', '#731902']
  }
-
-
-
-
-function pictureRandom (picture) {
-  picture.pixels = arrayRandom(picture.size).map(val => new Cell(options.palette, val));
-  return picture;
-}
-function arrayRandom (size) {
-  const array = new Array(size);
-  for (let i = 0; i < size; i++) {
-    array[i] = Math.round(Math.random());
-  }
-  return array;
-}
-
 
 
 const canvas = document.createElement('canvas');
@@ -42,16 +26,13 @@ function draw (picture, canvas) {
   canvas.style.backgroundColor = 'green';
   for (let y = 0; y < picture.height; y++) {
     for (let x = 0; x < picture.width; x++) {
-      console.log(picture.pixels);
       ctx.fillStyle = picture.pixel(x, y).color();
       ctx.fillRect(x * options.pixelSize, y * options.pixelSize, options.pixelSize, options.pixelSize);
     }
   }
 }
 
-const picture = new Picture(options.canvasWidth, 
-  options.canvasHeight, 
-  defaultBackground(options.canvasWidth, options.canvasHeight, options.palette));
+const picture = new Picture(options.canvasWidth, options.canvasHeight, options.palette);
 
 draw(picture, canvas);
 
@@ -63,13 +44,11 @@ const reflectButton = document.getElementById("reflect");
 reflectButton.addEventListener("click", () => draw(reflectPicture(picture), canvas));
 
 const randomButton = document.getElementById("random");
-randomButton.addEventListener("click", () => draw(pictureRandom(picture), canvas));
+randomButton.addEventListener("click", () => draw(fillPicture(picture, randomCells, options.palette), canvas));
 
 
-
-
-
-
+const restartButton = document.getElementById("restart");
+restartButton.addEventListener("click", () => draw(fillPicture(picture, deadCells, options.palette), canvas));
 
 /*
 canvas.addEventListener("mousedown", getMousePosition);

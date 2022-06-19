@@ -1,9 +1,9 @@
 class Picture {
-  constructor(width, height, pixels = []) {
+  constructor(width, height, pallete, pixels) {
     this.width = width;
     this.height = height;
     this.size = width*height;
-    this.pixels = pixels;
+    this.pixels = pixels || fillPicture(this, deadCells, pallete).pixels;
   }
 
   pixel(x, y){
@@ -12,9 +12,9 @@ class Picture {
 }
 
 class Cell {
-  constructor(palette, state = 'dead') {
-    this.palette = palette;
+  constructor(state = 'dead', palette) {
     this.state = state;
+    this.palette = palette;
   }
 
   get state() {
@@ -51,11 +51,30 @@ class Cell {
   }
 }
 
-function defaultBackground (width, height, palette) {
-  const arr = new Array(width * height).fill(new Cell(palette));
-  return arr;
+function fillPicture (picture, func, pallete) {
+  picture.pixels = func(picture.size).map(val => new Cell(val, pallete));
+  return picture;
 }
 
-export { defaultBackground };
+function deadCells (size) {
+  const array = new Array(size).fill(0);
+  return array;
+}
+
+
+function randomCells (size) {
+  const array = new Array(size);
+  for (let i = 0; i < size; i++) {
+    array[i] = Math.round(Math.random());
+  }
+  return array;
+}
+
 export { Picture };
 export { Cell };
+export { fillPicture };
+export { deadCells };
+export { randomCells };
+
+
+

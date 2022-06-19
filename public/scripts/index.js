@@ -1,65 +1,77 @@
-const brushColor = '#0000FF';
+import { gameOfLife } from "./algorithms/gameOfLife.js";
+import { reflectPicture } from "./algorithms/reflect.js";
+import { Picture, Cell, defaultBackground} from "./picture&components.js";
 
 //canvas parametrs
-const pixelSize = 50;
-const canvasWidth = 3;
-const canvasHeight = 5;
-const canvasColor1 = '#FFFFFF';
-const canvasColor2 = '#f7c0bc';
+const options = {
+  pixelSize: 50,
+  canvasWidth:6,
+  canvasHeight: 12,
+  canvasColor1: '#FFFFFF',
+  canvasColor2: '#f7c0bc',
+  brushColor: '#0000FF',
+  palette: ['#FFFFFF','#fc3005','#dc2802','#9b1d02', '#731902']
+ }
 
-let canvas = document.createElement('canvas');
-let canvasContainer = document.getElementById('canvas-container');
+
+
+
+function pictureRandom (picture) {
+  picture.pixels = arrayRandom(picture.size).map(val => new Cell(options.palette, val));
+  return picture;
+}
+function arrayRandom (size) {
+  const array = new Array(size);
+  for (let i = 0; i < size; i++) {
+    array[i] = Math.round(Math.random());
+  }
+  return array;
+}
+
+
+
+const canvas = document.createElement('canvas');
+const canvasContainer = document.getElementById('canvas-container');
 canvasContainer.appendChild(canvas);
 
 const ctx = canvas.getContext('2d');
-ctx.fillStyle = 'green';
 
-class Picture {
-  constructor(width, height, pixels = []) {
-    this.width = width;
-    this.height = height;
-    this.pixels = pixels;
-  }
-  
-  pixel(x, y){
-    return this.pixels[x + y * this.width];
-  }
-}
-
-//background
-function backGr (width, height) {
-  const pixels = new Array(width*height).fill(canvasColor1);
-  for (let index = 0; index < width*height; index += width) {
-    if((index/width)%2 === 0) {
-      for (let i = 0; i < width; i++) {
-        if (i%2 === 0) pixels[index+i] = canvasColor2;
-      }
-    }
-    else {
-      for (let i = 0; i < width; i++) {
-        if (i%2 != 0) pixels[index+i] = canvasColor2;
-      }
-    }
-  }
-  return pixels; 
-}
-
-const picture = new Picture( canvasWidth, canvasHeight, backGr(canvasWidth,canvasHeight));
-
-function createCanvas (picture, canvas) {
-  canvas.width = picture.width * pixelSize;
-  canvas.height = picture.height * pixelSize;
+function draw (picture, canvas) {
+  canvas.width = picture.width * options.pixelSize;
+  canvas.height = picture.height * options.pixelSize;
   canvas.style.backgroundColor = 'green';
   for (let y = 0; y < picture.height; y++) {
     for (let x = 0; x < picture.width; x++) {
-      ctx.fillStyle = picture.pixel(x, y);
-      ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+      console.log(picture.pixels);
+      ctx.fillStyle = picture.pixel(x, y).color();
+      ctx.fillRect(x * options.pixelSize, y * options.pixelSize, options.pixelSize, options.pixelSize);
     }
   }
 }
 
-createCanvas(picture, canvas);
+const picture = new Picture(options.canvasWidth, 
+  options.canvasHeight, 
+  defaultBackground(options.canvasWidth, options.canvasHeight, options.palette));
 
+draw(picture, canvas);
+
+//buttons
+const gameOfLifeButton = document.getElementById("game-of-life");
+gameOfLifeButton.addEventListener("click", () => draw(gameOfLife(picture), canvas));
+
+const reflectButton = document.getElementById("reflect");
+reflectButton.addEventListener("click", () => draw(reflectPicture(picture), canvas));
+
+const randomButton = document.getElementById("random");
+randomButton.addEventListener("click", () => draw(pictureRandom(picture), canvas));
+
+
+
+
+
+
+
+/*
 canvas.addEventListener("mousedown", getMousePosition);
 
 function getMousePosition (event) {
@@ -84,62 +96,7 @@ function changePixelColor (x, y) {
 //algorithms
 //переписати так, щоб фон фон продовжував йти шахмоткою?
 
-function reflectCanvas (picture) {
-  const newPixels = [];
 
-  let limit = picture.width;
-  const even = picture.width%2 != 0;
-  if(even) {
-    limit = picture.width - 1;
- }
-  for(let index = 0; index < picture.width*picture.height; index += picture.width) {
-    const row = [];
-    for(let i = 0; i < limit; i++) {
-      row[i] = picture.pixels[index+i];
-    }
-    newPixels.push(...row);
-    if (even) newPixels.push(picture.pixels[index+limit]);
-    newPixels.push(...row.reverse());
-  }
-
-  let w = 2*limit;
-  if(even) {
-    w += 1;
-  }
-  const newPicture = new Picture(w, picture.height, newPixels);
-  return newPicture;
-}
-
-const reflectButton = document.getElementById("reflect");
-reflectButton.addEventListener("mousedown", () => createCanvas(reflectCanvas(picture), canvas));
-
-//
-//
-/*
-class Picture {
-  constructor(width, height) {
-    this.width = width;
-    this.height = height;
-    this.pixels = arrayRandom(width, height);
-  }
-}
-
-function arrayRandom (width, height) {
-  const array = new Array(width*height);
-  for (let i = 0; i < width*height; i++) {
-    array[i] = Math.round(Math.random());
-  }
-  return array;
-}
-
-function grid (picture){
-  const arr = picture.pixels;
-  const w = picture.width;
-  for (let j = 0; j < picture.width*picture.height; j += w) {
-      let arr1 = arr.slice(j, j+w)
-      console.log(arr1);
-  }
-}
 
 
 //gameoflive
@@ -156,20 +113,6 @@ function gameOfLife (picture){
     secondGen[i] = countAlive(firstGen, i, arrayWidth, arrayHeight)
   }
 }
-
-function countAlive (array, index, w, size) {
-  let numAlive = 0;
-  const row = Math.trunc((index)/w)*w;
-  for (let j = row-w; j < row + w*2; j += w) {
-    for (let i = -1; i < 2; i++) {
-      numAlive += array[(w+i+index)%w+(size+j)%size];
-    }
-  }
-  numAlive -= array[index];
-  return numAlive;
-}
-
-
 
 
 

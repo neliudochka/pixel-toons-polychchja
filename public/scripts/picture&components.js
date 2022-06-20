@@ -2,7 +2,7 @@ class Picture {
   constructor(width, height, pallete, pixels) {
     this.width = width;
     this.height = height;
-    this.size = width*height;
+    this.size = width * height;
     this.pixels = pixels || fillPicture(this, deadCells, pallete).pixels;
   }
 
@@ -37,13 +37,13 @@ class Cell {
     }
   }
 
-  isAlive () {
+  isAlive() {
     if (this.state === 'dead') return 0;
     else return 1;
   }
 
-  getOld () {
-    if(this._state === 'alive') {
+  getOld() {
+    if (this._state === 'alive') {
       this.age++;
     }
     // add smth for else?
@@ -51,27 +51,27 @@ class Cell {
 
   color() {
     const arrLen = this.palette.length;
-    if(this.age < arrLen) return this.palette[this.age];
-    return this.palette[arrLen-1];
+    if (this.age < arrLen) return this.palette[this.age];
+    return this.palette[arrLen - 1];
   }
 }
 
-function fillPicture (picture, func, pallete) {
-  let newPicture ={};
-  if(!!picture.pixels) newPicture =  picture.copy();
+function fillPicture(picture, func, pallete) {
+  let newPicture = {};
+  if (picture.pixels) newPicture =  picture.copy();
   else newPicture = picture;
-  newPicture.pixels = func(picture.size).map(val => new Cell(val, pallete));
+  newPicture.pixels = func(picture.size).map((val) => new Cell(val, pallete));
   console.log(newPicture);
   return newPicture;
 }
 
-function deadCells (size) {
+function deadCells(size) {
   const array = new Array(size).fill(0);
   return array;
 }
 
 
-function randomCells (size) {
+function randomCells(size) {
   const array = new Array(size);
   for (let i = 0; i < size; i++) {
     array[i] = Math.round(Math.random());

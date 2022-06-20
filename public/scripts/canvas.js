@@ -31,11 +31,10 @@ function drawPixel(event, picture) {
 
 function getMousePosition(event) {
   const canPos = event.target.getBoundingClientRect();
-  const coord = {
+  return {
     x: Math.floor((event.clientX - canPos.left) / options.pixelSize),
     y: Math.floor((event.clientY - canPos.top) / options.pixelSize)
   };
-  return coord;
 }
 
 function changePixelColor({ x, y }, event, picture) {

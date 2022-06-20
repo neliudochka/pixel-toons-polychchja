@@ -17,18 +17,18 @@ const options = {
   const picCanv = new PictureCanvas(picture);
 
 
-//buttons
-const restartButton = document.getElementById("restart");
-restartButton.addEventListener("click", () => picCanv.updateStatus(fillPicture(picCanv.picture, deadCells, options.palette)));
+  //buttons
+  const restartButton = document.getElementById("restart");
+  restartButton.addEventListener("click", () => picCanv.updateStatus(fillPicture(picCanv.picture, deadCells, options.palette)));
 
-const randomButton = document.getElementById("random");
-randomButton.addEventListener("click", () => picCanv.updateStatus(fillPicture(picCanv.picture, randomCells, options.palette)));
+  const randomButton = document.getElementById("random");
+  randomButton.addEventListener("click", () => picCanv.updateStatus(fillPicture(picCanv.picture, randomCells, options.palette)));
 
-const reflectButton = document.getElementById("reflect");
-reflectButton.addEventListener("click", () => picCanv.updateStatus(reflectPicture(picCanv.picture)));
+  const reflectButton = document.getElementById("reflect");
+  reflectButton.addEventListener("click", () => picCanv.updateStatus(reflectPicture(picCanv.picture)));
 
-const gameOfLifeButton = document.getElementById("game-of-life");
-gameOfLifeButton.addEventListener("click", () => picCanv.updateStatus(gameOfLife(picCanv.picture)));
+  const gameOfLifeButton = document.getElementById("game-of-life");
+  gameOfLifeButton.addEventListener("click", () => picCanv.updateStatus(gameOfLife(picCanv.picture)));
 };
 
 

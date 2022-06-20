@@ -72,8 +72,7 @@ function fillPicture(picture, func, pallete) {
 }
 
 function deadCells(size) {
-  const array = new Array(size).fill(0);
-  return array;
+  return new Array(size).fill(0);
 }
 
 function randomCells(size) {

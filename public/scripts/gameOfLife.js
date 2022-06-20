@@ -1,8 +1,9 @@
 function gameOfLife (picture){
-  const arraySize = picture.size;
-  const arrayWidth = picture.width;
+  const clonePicture = picture.copy();
+  const arraySize = clonePicture.size;
+  const arrayWidth = clonePicture.width;
 
-  const generation = picture.pixels;
+  const generation = clonePicture.pixels;
   const aliveNeighbors = new Array(arraySize);
 
   //count alive neighbors for each cell
@@ -24,7 +25,7 @@ function gameOfLife (picture){
     else generation[i].getOld();
   }
 
-  return picture;
+  return clonePicture;
 }
 
 function countAlive (arrayOfCells, index, w, size) {

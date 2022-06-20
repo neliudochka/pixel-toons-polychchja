@@ -1,104 +1,106 @@
 import { gameOfLife } from "./gameOfLife.js";
 import { reflectPicture } from "./reflect.js";
-import { Picture, fillPicture, randomCells, deadCells} from "./picture&components.js";
+import { Picture, Cell, fillPicture, randomCells, deadCells} from "./picture&components.js";
+//import {} from "./draw.js";
 
 //canvas parametrs
 const options = {
   pixelSize: 50,
-  canvasWidth:6,
-  canvasHeight: 12,
-  canvasColor1: '#FFFFFF',
-  canvasColor2: '#f7c0bc',
-  brushColor: '#0000FF',
-  palette: ['#FFFFFF','#fc3005','#dc2802','#9b1d02', '#731902']
+  canvasWidth:5,
+  canvasHeight: 9,
+  palette: ['#FFFFFF','#fc3005','#dc2802','#9b1d02', '#731902'],
+  brush: new Cell(1, ['#FFFFFF','#fc3005','#dc2802','#9b1d02', '#731902'])
  }
 
-
-const canvas = document.createElement('canvas');
-const canvasContainer = document.getElementById('canvas-container');
-canvasContainer.appendChild(canvas);
-
-const ctx = canvas.getContext('2d');
-
-function draw (picture, canvas) {
+// const picture.pixelSize=50;
+ function drawPicture (picture, canvas) {
   canvas.width = picture.width * options.pixelSize;
   canvas.height = picture.height * options.pixelSize;
+  const ctx = canvas.getContext('2d');
   canvas.style.backgroundColor = 'green';
   for (let y = 0; y < picture.height; y++) {
     for (let x = 0; x < picture.width; x++) {
       ctx.fillStyle = picture.pixel(x, y).color();
-      ctx.fillRect(x * options.pixelSize, y * options.pixelSize, options.pixelSize, options.pixelSize);
+      ctx.fillRect(x * options.pixelSize, y * options.pixelSize, options.pixelSize,options.pixelSize);
     }
   }
 }
 
-const picture = new Picture(options.canvasWidth, options.canvasHeight, options.palette);
+class PictureCanvas {
+  constructor(picture) {
+    this.canvas = createCanvas(picture);
+    this.updateStatus(picture);
+  }
 
-draw(picture, canvas);
-
-//buttons
-const gameOfLifeButton = document.getElementById("game-of-life");
-gameOfLifeButton.addEventListener("click", () => draw(gameOfLife(picture), canvas));
-
-const reflectButton = document.getElementById("reflect");
-reflectButton.addEventListener("click", () => draw(reflectPicture(picture), canvas));
-
-const randomButton = document.getElementById("random");
-randomButton.addEventListener("click", () => draw(fillPicture(picture, randomCells, options.palette), canvas));
-
-
-const restartButton = document.getElementById("restart");
-restartButton.addEventListener("click", () => draw(fillPicture(picture, deadCells, options.palette), canvas));
-
-/*
-canvas.addEventListener("mousedown", getMousePosition);
-
-function getMousePosition (event) {
-  const canPos = canvas.getBoundingClientRect();
-  console.log(canPos);
-  const coord = {
-    x: Math.floor((event.clientX-canPos.left)/pixelSize),
-    y: Math.floor((event.clientY-canPos.top)/pixelSize)
-  };
-  console.log(coord)
-  changePixelColor(coord.x, coord.y);
-}
-
-function changePixelColor (x, y) {
-  picture.pixels[x + y * picture.width] = brushColor;
-  ctx.fillStyle = picture.pixel(x, y);
-  ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
-  console.log(picture.pixels);
-}
-
-
-//algorithms
-//переписати так, щоб фон фон продовжував йти шахмоткою?
-
-
-
-
-//gameoflive
-function gameOfLife (picture){
-  const firstGen = picture.pixels;
-  const arraySize = picture.width*picture.height;
-  const arrayWidth = picture.width;
-  const arrayHeight = picture.height;
-  const secondGen = new Array(arraySize);
-
-  //count alive neighbors for each cell
-
-  for (let i = 0; i < arraySize; i++) {
-    secondGen[i] = countAlive(firstGen, i, arrayWidth, arrayHeight)
+  updateStatus(picture) {
+    if(this.picture === picture) {
+      console.log(this.picture,picture);
+      console.log('d');
+      return;
+    }
+      else {
+      this.picture = picture;
+      drawPicture(picture, this.canvas);
+    }
   }
 }
 
+function createCanvas (picture){
+  const canvas = document.createElement('canvas');
+  const canvasContainer = document.getElementById('canvas-container');
+  canvasContainer.appendChild(canvas);
+  canvas.addEventListener("mousedown", (event) => drawPixel(event, picture));
+  return canvas;
+};
+
+function drawPixel (event, picture) {
+  console.log(event);
+  const coord = getMousePosition(event);
+  changePixelColor(coord, event, picture);
+}
+
+function changePixelColor ({x, y}, event, picture) {
+  const canvas = event.target;
+  const ctx = canvas.getContext('2d');
+  picture.pixels[x + y * picture.width].state = 1;
+
+  ctx.fillStyle = picture.pixel(x, y).color();
+  ctx.fillRect(x * options.pixelSize, y * options.pixelSize, options.pixelSize, options.pixelSize);
+  console.log(picture.pixels);
+  console.log(1, picCanv);
+}
+
+function getMousePosition (event) {
+  const canPos = event.target.getBoundingClientRect();
+  console.log(canPos);
+  const coord = {
+    x: Math.floor((event.clientX-canPos.left)/options.pixelSize),
+    y: Math.floor((event.clientY-canPos.top)/options.pixelSize)
+  };
+  return coord;
+}
 
 
-//tests
-const p = new Picture(5,5);
-console.log({w: p.width, h: p.height, pixels: p.pixels});
 
-grid(p);
-console.log(countAlive(p.pixels, 4, 5, 25));
-*/
+const picture = new Picture(options.canvasWidth, options.canvasHeight, options.palette);
+const picCanv = new PictureCanvas(picture);
+
+//console.log(conv.picture);
+
+//drawPicture(picture, canvas);
+
+//buttons
+const restartButton = document.getElementById("restart");
+restartButton.addEventListener("click", () => picCanv.updateStatus(fillPicture(picCanv.picture, deadCells, options.palette)));
+
+const randomButton = document.getElementById("random");
+randomButton.addEventListener("click", () => picCanv.updateStatus(fillPicture(picCanv.picture, randomCells, options.palette)));
+
+const reflectButton = document.getElementById("reflect");
+reflectButton.addEventListener("click", () => picCanv.updateStatus(reflectPicture(picCanv.picture)));
+
+const gameOfLifeButton = document.getElementById("game-of-life");
+gameOfLifeButton.addEventListener("click", () => picCanv.updateStatus(gameOfLife(picCanv.picture)));
+
+
+export {picture};

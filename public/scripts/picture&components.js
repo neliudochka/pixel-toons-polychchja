@@ -6,8 +6,13 @@ class Picture {
     this.pixels = pixels || fillPicture(this, deadCells, pallete).pixels;
   }
 
-  pixel(x, y){
+  pixel(x, y) {
     return this.pixels[x + y * this.width];
+  }
+
+  copy() {
+    console.log(this.pixels);
+    return new Picture(this.width, this.height, this.pallete, this.pixels);
   }
 }
 
@@ -52,8 +57,12 @@ class Cell {
 }
 
 function fillPicture (picture, func, pallete) {
-  picture.pixels = func(picture.size).map(val => new Cell(val, pallete));
-  return picture;
+  let newPicture ={};
+  if(!!picture.pixels) newPicture =  picture.copy();
+  else newPicture = picture;
+  newPicture.pixels = func(picture.size).map(val => new Cell(val, pallete));
+  console.log(newPicture);
+  return newPicture;
 }
 
 function deadCells (size) {
@@ -75,6 +84,3 @@ export { Cell };
 export { fillPicture };
 export { deadCells };
 export { randomCells };
-
-
-

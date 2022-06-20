@@ -1,18 +1,19 @@
 function reflectPicture (picture) {
+  const clonePicture = picture.copy();
   const newPixels = [];
 
-  let limit = picture.width;
-  const even = (picture.width%2 != 0);
+  let limit = clonePicture.width;
+  const even = (clonePicture.height%2 != 0);
   if(even) {
     limit--;
   }
-  for(let index = 0; index < picture.size; index += picture.width) {
+  for(let index = 0; index < clonePicture.size; index += clonePicture.width) {
     const row = [];
     for(let i = 0; i < limit; i++) {
-      row[i] = picture.pixels[index+i];
+      row[i] = clonePicture.pixels[index+i];
     }
     newPixels.push(...row);
-    if (even) newPixels.push(picture.pixels[index+limit]);
+    if (even) newPixels.push(clonePicture.pixels[index+limit]);
     newPixels.push(...row.reverse());
   }
 
@@ -21,10 +22,10 @@ function reflectPicture (picture) {
     w += 1;
   }
 
-  picture.width = w;
-  picture.size = w*picture.height;
-  picture.pixels = newPixels;
-  return picture;
+  clonePicture.width = w;
+  clonePicture.size = w*clonePicture.height;
+  clonePicture.pixels = newPixels;
+  return clonePicture;
 }
 
 export { reflectPicture };

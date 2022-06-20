@@ -1,3 +1,8 @@
+const State = {
+  ALIVE: 'alive',
+  DEAD: 'dead'
+};
+
 class Picture {
   constructor(width, height, pallete, pixels) {
     this.width = width;
@@ -17,7 +22,7 @@ class Picture {
 }
 
 class Cell {
-  constructor(state = 'dead', palette) {
+  constructor(state = State.DEAD, palette) {
     this.state = state;
     this.palette = palette;
   }
@@ -27,23 +32,23 @@ class Cell {
   }
 
   set state(value) {
-    if (value === 'dead' || value === 0) {
-      this._state = 'dead';
+    if (value === State.DEAD || value === 0) {
+      this._state = State.DEAD;
       this.age = 0;
     }
-    if (value === 'alive' || value === 1) {
-      this._state = 'alive';
+    if (value === State.ALIVE || value === 1) {
+      this._state = State.ALIVE;
       this.age = 1;
     }
   }
 
   isAlive() {
-    if (this.state === 'dead') return 0;
+    if (this.state === State.DEAD) return 0;
     else return 1;
   }
 
   getOld() {
-    if (this._state === 'alive') {
+    if (this._state === State.ALIVE) {
       this.age++;
     }
     // add smth for else?
@@ -55,6 +60,7 @@ class Cell {
     return this.palette[arrLen - 1];
   }
 }
+
 
 function fillPicture(picture, func, pallete) {
   let newPicture = {};
@@ -70,7 +76,6 @@ function deadCells(size) {
   return array;
 }
 
-
 function randomCells(size) {
   const array = new Array(size);
   for (let i = 0; i < size; i++) {
@@ -84,3 +89,4 @@ export { Cell };
 export { fillPicture };
 export { deadCells };
 export { randomCells };
+export { State };

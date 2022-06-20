@@ -1,4 +1,6 @@
-/*rules
+import { State } from './picture&components.js';
+
+/*Game of Life rules:
   1.Any live cell with fewer than two live
   neighbours dies, as if by underpopulation
 
@@ -12,8 +14,6 @@
   neighbours becomes a live cell, as if by reproduction
   */
 
-const DEAD = 'dead';
-const ALIVE = 'alive';
 const RULE_1 = 2;
 const RULE_2 = 3;
 
@@ -33,10 +33,10 @@ function gameOfLife(picture) {
 
 
   for (let i = 0; i < arraySize; i++) {
-    if (aliveNeighbors[i] < RULE_1) generation[i].state = DEAD;
-    if (aliveNeighbors[i] > RULE_2) generation[i].state = DEAD;
-    if (aliveNeighbors[i] === RULE_2 && generation[i].state === DEAD) {
-      generation[i].state = ALIVE;
+    if (aliveNeighbors[i] < RULE_1) generation[i].state = State.DEAD;
+    if (aliveNeighbors[i] > RULE_2) generation[i].state = State.DEAD;
+    if (aliveNeighbors[i] === RULE_2 && generation[i].state === State.DEAD) {
+      generation[i].state = State.ALIVE;
     } else { generation[i].getOld(); }
   }
 

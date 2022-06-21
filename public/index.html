@@ -9,8 +9,24 @@
     <body>
         <div class="navigation-bar">
             <span class="button" id="create-button">CREATE</span>
-            <span class="button" id="clear-button">CLEAR</span>
         </div>
+
+        <div id="popup" class="popup">
+            <div id="popup-body">
+                <div id="popup-content">
+                    <div id="popup-close">x</div>
+                    <div class="popup-text">Choose pslette and canvas size!</div>
+                    <form>
+                        <label>Choose width&height
+                            <input type="number" id="width-height"
+                            min="5" max="15">
+                        </label>
+                        <button class="button" id="popup-ok" type="button">OK</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="left-bar">
                 <div class="undo-redo-buttons">

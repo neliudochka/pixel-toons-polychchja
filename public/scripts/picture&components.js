@@ -16,17 +16,15 @@ class Picture {
   }
 
   copy() {
-    console.log('copy', this.pixels);
     return new Picture(this.width,
       this.height, this.pallete, this.pixels.map((cell) => cell.copy()));
   }
 }
 
 class Cell {
-  constructor(state = State.DEAD, palette, age = 0) {
+  constructor(state = State.DEAD, palette) {
     this.state = state;
     this.palette = palette;
-    this.age = age;
   }
 
   get state() {
@@ -63,7 +61,9 @@ class Cell {
   }
 
   copy() {
-    return new Cell(this._state, this.palette, this.age);
+    const newCell = new Cell(this._state, this.palette);
+    newCell.age = this.age;
+    return newCell;
   }
 }
 
@@ -72,10 +72,8 @@ function fillPicture(picture, func, pallete) {
   let newPicture = {};
   if (picture.pixels) {
     newPicture =  picture.copy();
-    console.log('nPic', newPicture);
   } else { newPicture = picture; }
   newPicture.pixels = func(picture.size).map((val) => new Cell(val, pallete));
-  console.log(newPicture);
   return newPicture;
 }
 

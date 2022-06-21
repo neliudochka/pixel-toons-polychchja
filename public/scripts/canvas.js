@@ -2,7 +2,6 @@ import { options } from './index.js';
 
 class PictureCanvas {
   constructor(picture) {
-    this.canvas = createCanvas(picture);
     this.updateStatus(picture);
   }
 
@@ -11,38 +10,44 @@ class PictureCanvas {
       return;
     } else {
       this.picture = picture;
-      drawPicture(picture, this.canvas);
+      drawPicture(picture, this.checkCanvas(this.canvas));
     }
+  }
+
+  checkCanvas(canvas) {
+    console.log(canvas);
+    if (!canvas) this.canvas = createCanvas(this);
+    return this.canvas;
   }
 }
 
-function createCanvas(picture) {
+function createCanvas(picCanv) {
   const canvas = document.createElement('canvas');
   const canvasContainer = document.getElementById('canvas-container');
   canvasContainer.appendChild(canvas);
-  canvas.addEventListener('mousedown', (event) => drawPixel(event, picture));
+  canvas.addEventListener('mousedown', (event) => drawPixel(event, picCanv));
   return canvas;
 }
 
-function drawPixel(event, picture) {
+function drawPixel(event, picCanv) {
   const coord = getMousePosition(event);
-  changePixelColor(coord, event, picture);
+  changePixelColor(coord, event, picCanv);
 }
 
 function getMousePosition(event) {
   const canPos = event.target.getBoundingClientRect();
-  return {
+  const coord = {
     x: Math.floor((event.clientX - canPos.left) / options.pixelSize),
     y: Math.floor((event.clientY - canPos.top) / options.pixelSize)
   };
+  return coord;
 }
 
-function changePixelColor({ x, y }, event, picture) {
+function changePixelColor({ x, y }, event, picCanv) {
   const canvas = event.target;
   const ctx = canvas.getContext('2d');
-  picture.pixels[x + y * picture.width].state = 1;
-
-  ctx.fillStyle = picture.pixel(x, y).color();
+  picCanv.picture.pixels[x + y * picCanv.picture.width].state = 1;
+  ctx.fillStyle = picCanv.picture.pixel(x, y).color();
   ctx.fillRect(
     x * options.pixelSize,
     y * options.pixelSize,

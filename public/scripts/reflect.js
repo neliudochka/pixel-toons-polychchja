@@ -6,9 +6,7 @@ function reflectPicture(picture) {
 
   let limit = clonePicture.width;
 
-
   //made in order to prevent iternal reflect
-  console.log(picture.width, options.canvasWidth);
   if (picture.width === options.canvasHeight) {
     limit = options.canvasWidth;
   }

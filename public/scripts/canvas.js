@@ -15,7 +15,6 @@ class PictureCanvas {
   }
 
   checkCanvas(canvas) {
-    console.log(canvas);
     if (!canvas) this.canvas = createCanvas(this);
     return this.canvas;
   }

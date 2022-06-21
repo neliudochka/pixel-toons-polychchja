@@ -1,14 +1,12 @@
-import { options } from './index.js';
-
-function reflectPicture(picture) {
-  const clonePicture = picture.copy();
+function reflectPicture(picCanv) {
+  const clonePicture = picCanv.picture.copy();
   const newPixels = [];
 
   let limit = clonePicture.width;
 
   //made in order to prevent iternal reflect
-  if (picture.width === options.canvasHeight) {
-    limit = options.canvasWidth;
+  if (clonePicture.width === picCanv.options.fullCanvasWidth) {
+    limit = picCanv.options.canvasWidth;
   }
 
   const odd = clonePicture.height % 2 !== 0;

@@ -1,20 +1,16 @@
-
-// eslint-disable-next-line no-unused-vars
+import { ee } from './create.js';
 import { Options } from './options.js';
-//import { Application } from './application.js';
-//canvas parametrs
-const options = {
-  pixelSize: 50,
-  canvasWidth: 5,
-  canvasHeight: 9,
-  palette: ['#FFFFFF', '#fc3005', '#dc2802', '#9b1d02', '#731902']
-};
-
+import { Application } from './application.js';
 
 window.onload = () => {
-//  new Application(options);
+  ee.on('newOptions', (data) => {
+    /*    const canvas = document.getElementsByTagName('canvas');
+    //очищую, щоб уникнути накладання кількох канвасів
+    if (canvas.length > 0) canvas.item(0).remove();
+  */
+    const shit = new Application(new Options(data));
+    console.log('shit', shit);
+  });
 };
 
 
-
-export { options };

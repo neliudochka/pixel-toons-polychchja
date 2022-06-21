@@ -1,33 +1,41 @@
+import { options } from './index.js';
+
 function reflectPicture(picture) {
-  const clonePicture1 = picture.copy();
+  const clonePicture = picture.copy();
   const newPixels = [];
 
-  let limit = clonePicture1.width;
-  const even = clonePicture1.height % 2 !== 0;
-  if (even) {
-    limit--;
+  let limit = clonePicture.width;
+
+
+  //made in order to prevent iternal reflect
+  console.log(picture.width, options.canvasWidth);
+  if (picture.width === options.canvasHeight) {
+    limit = options.canvasWidth;
   }
-  for (let index = 0; index < clonePicture1.size;
-    index += clonePicture1.width) {
+
+  const odd = clonePicture.height % 2 !== 0;
+  if (odd) limit--;
+
+  for (let index = 0; index < clonePicture.size; index += clonePicture.width) {
     const row = [];
     for (let i = 0; i < limit; i++) {
-      row[i] = clonePicture1.pixels[index + i];
+      row[i] = clonePicture.pixels[index + i];
     }
     newPixels.push(...row);
-    if (even) newPixels.push(clonePicture1.pixels[index + limit]);
+    if (odd) newPixels.push(clonePicture.pixels[index + limit]);
     const reverseRow = row.map((cell) => cell.copy()).reverse();
     newPixels.push(...reverseRow);
   }
 
   let w = 2 * limit;
-  if (even) {
+  if (odd) {
     w += 1;
   }
 
-  clonePicture1.width = w;
-  clonePicture1.size = w * clonePicture1.height;
-  clonePicture1.pixels = newPixels;
-  return clonePicture1;
+  clonePicture.width = w;
+  clonePicture.size = w * clonePicture.height;
+  clonePicture.pixels = newPixels;
+  return clonePicture;
 }
 
 export { reflectPicture };

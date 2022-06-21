@@ -23,9 +23,10 @@ class Picture {
 }
 
 class Cell {
-  constructor(state = State.DEAD, palette) {
+  constructor(state = State.DEAD, palette, age = 0) {
     this.state = state;
     this.palette = palette;
+    this.age = age;
   }
 
   get state() {
@@ -62,7 +63,7 @@ class Cell {
   }
 
   copy() {
-    return new Cell(this._state, this.palette);
+    return new Cell(this._state, this.palette, this.age);
   }
 }
 

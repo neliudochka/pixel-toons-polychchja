@@ -9,7 +9,21 @@ My project "Polychchja" is a pixel art redactor for crearing avatars. "Polychchj
 
 This is just a part of a bigger pixel art editor that me and the other girls from CodeUmoja are developing. <br>
 
+<hr>
 
+Зараз, окрім звичайного малювання, є також 4 алгоритми:<br>
+  очищення, <br>
+  рандом, <br>
+  віддзеркалювання, <br> 
+  гра в життя (https://uk.wikipedia.org/wiki/%D0%96%D0%B8%D1%82%D1%82%D1%8F_(%D0%B3%D1%80%D0%B0)). <br>
+
+You can not only draw, but also use one of the 4 algotithms: <br>
+  restart, <br>
+  random, <br>
+  reflect, <br>
+  game of life (https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)<br>
+  
+<hr>
 Приклади | Examples<br>
 
 ![Screenshot from 2022-06-22 05-19-31](https://user-images.githubusercontent.com/90915275/174929297-19d80595-25d0-4f04-8b0d-4ebacdbfe2a0.png)
@@ -24,5 +38,6 @@ This is just a part of a bigger pixel art editor that me and the other girls fro
 
 ![Screenshot from 2022-06-22 05-13-02](https://user-images.githubusercontent.com/90915275/174928725-4c424cc9-6046-4146-81b7-c3dbad0b3eca.png)
 
-
 ![Screenshot from 2022-06-22 05-13-31](https://user-images.githubusercontent.com/90915275/174928744-18b4a94c-07a3-4dbf-99a7-cd7381e04b9e.png)
+
+Залишилося зробити: можливість обирати палетку, редизайн, експорт зображень, юніт тести 

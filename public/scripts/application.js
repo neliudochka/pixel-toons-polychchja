@@ -1,6 +1,6 @@
 import { gameOfLife } from './gameOfLife.js';
 import { reflectPicture } from './reflect.js';
-import { PictureCanvas } from './canvas.js';
+import { PicturePainer } from './picturePainter.js';
 import { Picture,
   fillPicture,
   randomCells,
@@ -10,7 +10,7 @@ import { Picture,
 class Application {
   constructor(options) {
     this.options = options;
-    this.picCanv = new PictureCanvas(new Picture(this.options.canvasWidth,
+    this.picCanv = new PicturePainer(new Picture(this.options.canvasWidth,
       this.options.canvasHeight,
       this.options.palette), this.options);
     this.createButtons();

@@ -1,7 +1,4 @@
-const State = {
-  ALIVE: 'alive',
-  DEAD: 'dead'
-};
+import { Cell } from './cell.js';
 
 class Picture {
   constructor(width, height, pallete, pixels) {
@@ -21,57 +18,11 @@ class Picture {
   }
 }
 
-class Cell {
-  constructor(state = State.DEAD, palette) {
-    this.state = state;
-    this.palette = palette;
-  }
-
-  get state() {
-    return this._state;
-  }
-
-  set state(value) {
-    if (value === State.DEAD || value === 0) {
-      this._state = State.DEAD;
-      this.age = 0;
-    }
-    if (value === State.ALIVE || value === 1) {
-      this._state = State.ALIVE;
-      this.age = 1;
-    }
-  }
-
-  isAlive() {
-    if (this.state === State.DEAD) return 0;
-    else return 1;
-  }
-
-  getOld() {
-    if (this._state === State.ALIVE) {
-      this.age++;
-    }
-    // add smth for else?
-  }
-
-  color() {
-    const arrLen = this.palette.length;
-    if (this.age < arrLen) return this.palette[this.age];
-    return this.palette[arrLen - 1];
-  }
-
-  copy() {
-    const newCell = new Cell(this._state, this.palette);
-    newCell.age = this.age;
-    return newCell;
-  }
-}
-
 
 function fillPicture(picture, func, pallete) {
   let newPicture = {};
   if (picture.pixels) {
-    newPicture =  picture.copy();
+    newPicture = picture.copy();
   } else { newPicture = picture; }
   newPicture.pixels = func(picture.size).map((val) => new Cell(val, pallete));
   return newPicture;
@@ -90,8 +41,6 @@ function randomCells(size) {
 }
 
 export { Picture };
-export { Cell };
 export { fillPicture };
 export { deadCells };
 export { randomCells };
-export { State };

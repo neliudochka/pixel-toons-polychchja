@@ -1,4 +1,4 @@
-class PictureCanvas {
+class PicturePainer {
   constructor(picture, options) {
     this.options = options;
     this.updateStatus(picture);
@@ -34,11 +34,10 @@ function drawPixel(event, picCanv) {
 
 function getMousePosition(event, options) {
   const canPos = event.target.getBoundingClientRect();
-  const coord = {
+  return {
     x: Math.floor((event.clientX - canPos.left) / options.pixelSize),
     y: Math.floor((event.clientY - canPos.top) / options.pixelSize)
   };
-  return coord;
 }
 
 function changePixelColor({ x, y }, event, picCanv) {
@@ -57,7 +56,6 @@ function drawPicture(picture, canvas, options) {
   canvas.width = picture.width * options.pixelSize;
   canvas.height = picture.height * options.pixelSize;
   const ctx = canvas.getContext('2d');
-  canvas.style.backgroundColor = 'green';
   for (let y = 0; y < picture.height; y++) {
     for (let x = 0; x < picture.width; x++) {
       ctx.fillStyle = picture.pixel(x, y).color();
@@ -70,4 +68,4 @@ function drawPicture(picture, canvas, options) {
   }
 }
 
-export { PictureCanvas };
+export { PicturePainer };

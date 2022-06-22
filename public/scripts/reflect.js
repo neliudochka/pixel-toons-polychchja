@@ -23,13 +23,13 @@ function reflectPicture(picCanv) {
     newPixels.push(...reverseRow);
   }
 
-  let w = 2 * limit;
+  let newWidth = 2 * limit;
   if (odd) {
-    w += 1;
+    newWidth += 1;
   }
 
-  clonePicture.width = w;
-  clonePicture.size = w * clonePicture.height;
+  clonePicture.width = newWidth;
+  clonePicture.size = newWidth * clonePicture.height;
   clonePicture.pixels = newPixels;
   return clonePicture;
 }

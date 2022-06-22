@@ -29,7 +29,7 @@ class Cell {
     else return 1;
   }
 
-  getOld() {
+  makeOld() {
     if (this._state === CellState.ALIVE) {
       this.age++;
     }

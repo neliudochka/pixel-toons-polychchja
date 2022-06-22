@@ -22,7 +22,7 @@ class Picture {
 function fillPicture(picture, func, pallete) {
   let newPicture = {};
   if (picture.pixels) {
-    newPicture =  picture.copy();
+    newPicture = picture.copy();
   } else { newPicture = picture; }
   newPicture.pixels = func(picture.size).map((val) => new Cell(val, pallete));
   return newPicture;

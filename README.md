@@ -1,12 +1,20 @@
-# Hello! <br>
-We are a team of first-year students of Kyiv Politechnic Institute: <br>
+# Поличчя | Polychchja <br>
+Мій проєкт "Поличчя" (див. значення http://sum.in.ua/s/polychchja) є піксель-арт реадктором, націленим на створення полич (аватарок)<br>
+<hr>
+My project "Polychchja" is a pixel art redactor for crearing avatars. "Polychchja" is an ancient dialect Ukrainian word for a photo or a portrait<br>
 
-Myts Victoria, IM-12 <br>
-Petruk Daria, IM-12 <br>
-Borovkova Maria, IM-11 <br>
-Barytska Svitlana, IM-12 <br>
-Gorbunova Liudmyla, IM-12 
+Він є частинкою великого піксель-арт редактору, який я та інші дівчата з CodeUmoja розробляємо. <br>
+<hr>
+This is just a part of a bigger pixel art editor that me and the other girls from CodeUmoja are developing. <br>
 
-The theme of our course work is a <b>platform for creating and sharing pixelated gif-animations.</b>
+Приклади | Examples<br>
 
-We <i>individually</i> work on different subprojects which will be merged together later.
+![Screenshot from 2022-06-22 05-09-13](https://user-images.githubusercontent.com/90915275/174928361-e5b6bd90-2268-45ac-820a-64e181cc59c6.png)
+
+![Screenshot from 2022-06-22 05-12-07](https://user-images.githubusercontent.com/90915275/174928649-0d8f92e7-29e9-4a6f-a4c2-f02735434844.png)
+
+![Screenshot from 2022-06-22 05-12-52](https://user-images.githubusercontent.com/90915275/174928673-3d17469a-db45-49cb-b446-f69357248c5e.png)
+
+![Screenshot from 2022-06-22 05-13-02](https://user-images.githubusercontent.com/90915275/174928725-4c424cc9-6046-4146-81b7-c3dbad0b3eca.png)
+
+![Screenshot from 2022-06-22 05-13-31](https://user-images.githubusercontent.com/90915275/174928744-18b4a94c-07a3-4dbf-99a7-cd7381e04b9e.png)

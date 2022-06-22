@@ -14,12 +14,15 @@ This is just a part of a bigger pixel art editor that me and the other girls fro
 
 ![Screenshot from 2022-06-22 05-19-31](https://user-images.githubusercontent.com/90915275/174929297-19d80595-25d0-4f04-8b0d-4ebacdbfe2a0.png)
 
-![Screenshot from 2022-06-22 05-15-48](https://user-images.githubusercontent.com/90915275/174929363-b1354121-caf7-4361-9b78-4b3a45eebac0.png)
-
 ![Screenshot from 2022-06-22 05-12-07](https://user-images.githubusercontent.com/90915275/174928649-0d8f92e7-29e9-4a6f-a4c2-f02735434844.png)
+
+![Screenshot from 2022-06-22 05-16-09](https://user-images.githubusercontent.com/90915275/174929486-a81b38c7-5123-45a9-bae0-638f4ba3aeb3.png)
+
+![Screenshot from 2022-06-22 05-16-19](https://user-images.githubusercontent.com/90915275/174929505-981235f0-6590-40f8-a22c-06e2f56518b0.png)
 
 ![Screenshot from 2022-06-22 05-12-52](https://user-images.githubusercontent.com/90915275/174928673-3d17469a-db45-49cb-b446-f69357248c5e.png)
 
 ![Screenshot from 2022-06-22 05-13-02](https://user-images.githubusercontent.com/90915275/174928725-4c424cc9-6046-4146-81b7-c3dbad0b3eca.png)
+
 
 ![Screenshot from 2022-06-22 05-13-31](https://user-images.githubusercontent.com/90915275/174928744-18b4a94c-07a3-4dbf-99a7-cd7381e04b9e.png)

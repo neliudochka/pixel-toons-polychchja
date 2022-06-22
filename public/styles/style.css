@@ -4,7 +4,7 @@ html{
 body {
     color:azure;
     background-color: rgb(171, 58, 6);
-    font-size: 15pt;
+    font-size: 16pt;
     min-height: 100vh;
     margin: 0;
     box-sizing: border-box;
@@ -15,13 +15,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    background-color: rgb(79, 71, 71);
+    background-color: rgb(223, 189, 160);
 
   }
 
 .navigation-bar {
     color:whitesmoke;
-    background-color: rgb(60, 40, 31);
+    background-color:rgb(112, 38, 38);
     padding: 0.7em;
     border: 0.01em ridge rgb(247, 247, 196);
 }
@@ -29,14 +29,15 @@ body {
 .left-bar {
     display: flex;
     flex-direction: column;
-    background-color: rgb(60, 40, 31);
+    background-color: rgb(149, 53, 53);
     color:whitesmoke;
     padding: 1em;
     border-right: 0.01em solid rgb(247, 247, 196);
 }
 
 .undo-redo-buttons img {
-    background-color: rgb(122, 10, 58);
+    background-color: brown;
+    border-color: wheat ;
     width: 7em;
     height: 7em;
 }
@@ -55,13 +56,13 @@ body {
 .right-bar {
     display: flex;
     flex-direction: column;
-    background-color: rgb(60, 40, 31);
+    background-color: rgb(149, 53, 53);
     padding: 1em;
     border: 0.01em solid rgb(247, 247, 196);
 }
 
 .button {
-    border: 0.01em solid rgb(91, 3, 3);
+    border: 0.01em solid rgb(126, 4, 4);
     background-color:rgb(68, 12, 12);
     padding: 0.2em;
 }

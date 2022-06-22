@@ -1,6 +1,6 @@
 import { gameOfLife } from './gameOfLife.js';
 import { reflectPicture } from './reflect.js';
-import { PicturePainer } from './canvas.js';
+import { PicturePainer } from './picturePainter.js';
 import { Picture,
   fillPicture,
   randomCells,

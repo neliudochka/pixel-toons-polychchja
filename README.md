@@ -17,7 +17,7 @@ This is just a part of a bigger pixel art editor that me and the other girls fro
   -віддзеркалювання, <br> 
   -гра в життя (https://uk.wikipedia.org/wiki/%D0%96%D0%B8%D1%82%D1%82%D1%8F_(%D0%B3%D1%80%D0%B0)). <br>
 
-You can not only draw, but also use one of the 4 algotithms: <br>
+You can not only draw, but also use one of the 4 algorithms: <br>
   -restart, <br>
   -random, <br>
   -reflect, <br>

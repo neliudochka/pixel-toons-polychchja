@@ -91,20 +91,3 @@ class Color {
 }
 
 export { Color };
-
-
-setPallette(deadColor, aliveColor, hueNumber) {
-  this.palette = [deadColor, aliveColor];
-  const aliveHSL = Color.fromHex(aliveColor).toHSL();
-  const interval = aliveHSL.L / hueNumber;
-  console.log('alive', aliveHSL);
-  for (let i = 2; i < 2 + hueNumber; i++) {
-    const hueHSL = aliveHSL;
-    hueHSL.L = aliveHSL.L - interval;
-    console.log('hue', hueHSL);
-    console.log(Color.fromHSL(hueHSL).toHex());
-    const hue = Color.fromHSL(hueHSL).toHex();
-    this.palette.push(hue);
-    hueNumber--;
-  }
-}

@@ -18,6 +18,7 @@ const RULE_1 = 2;
 const RULE_2 = 3;
 
 function gameOfLife(picture) {
+  console.log(picture);
   const clonePicture = picture.copy();
   const arraySize = clonePicture.size;
   const arrayWidth = clonePicture.width;
@@ -41,6 +42,7 @@ function gameOfLife(picture) {
     } else { generation[i].makeOld(); }
   }
 
+  console.log(clonePicture);
   return clonePicture;
 }
 

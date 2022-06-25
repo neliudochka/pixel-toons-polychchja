@@ -1,22 +1,37 @@
-//незабаром заміню перепишу алгоритм отримання розмірів пікселів
-//і додам можливість обирати палетки різних кольорів
-const options = {
-  pixelSize: 50,
-  palette: ['#FFFFFF', '#fc3005', '#dc2802', '#9b1d02', '#731902']
-};
+import { Color } from './color.js';
+const SCALE = 50;
 
 class Options {
-  constructor(canvasHeight) {
-    this.pixelSize = options.pixelSize;
+  constructor(canvasHeight, deadColor, aliveColor, hueNumber) {
+    canvasHeight = parseInt(canvasHeight);
+    hueNumber = parseInt(hueNumber);
+
+    this.setPixelSize();
     this.canvasHeight = canvasHeight;
-    this.setCanvasWidth(canvasHeight);
-    this.palette = options.palette;
+    this.setCanvasWidth();
+    this.setPallette(deadColor, aliveColor, hueNumber);
   }
 
-  setCanvasWidth(canvasHeight) {
-    this.canvasWidth = Math.round(canvasHeight / 2);
-    //потрібно для reflect і прямокутних форм
-    this.fullCanvasWidth = canvasHeight;
+  setPixelSize() {
+    this.pixelSize = SCALE;
+  }
+
+  setCanvasWidth() {
+    this.canvasWidth = Math.round(this.canvasHeight / 2);
+    //потрібно для reflect і в майбутньому для прямокутних форм
+    this.fullCanvasWidth = this.canvasHeight;
+  }
+
+  setPallette(deadColor, aliveColor, hueNumber) {
+    this.palette = [deadColor, aliveColor];
+
+    const aliveHSL = Color.fromHex(aliveColor).toHSL();
+    const interval = aliveHSL.L / hueNumber;
+    for (let i = 1; i < hueNumber; i++) {
+      const newHSL = Color.fromHex(this.palette[i]).toHSL();
+      newHSL.L -= interval;
+      this.palette[i + 1] = Color.fromHSL(newHSL).toHex();
+    }
   }
 }
 

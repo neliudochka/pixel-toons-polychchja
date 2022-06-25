@@ -10,32 +10,27 @@ import { Picture,
 class Application {
   constructor(options) {
     this.options = options;
-    this.picCanv = new PicturePainer(new Picture(this.options.canvasWidth,
+    this.picPainter = new PicturePainer(new Picture(this.options.canvasWidth,
       this.options.canvasHeight,
       this.options.palette), this.options);
-    this.createButtons();
+    this.setUpButtons();
   }
 
-  createButtons() {
-    const restartButton = document.getElementById('restart');
-    restartButton.addEventListener('click',
-      () => this.picCanv.updateStatus(fillPicture(this.picCanv
-        .picture, deadCells, this.options.palette)));
+  setUpButtons() {
+    const buttonsId = ['restart', 'random', 'reflect', 'game-of-life'];
+    const handlers = {
+      'restart': () => this.picPainter.updateStatus(fillPicture(this.picPainter
+        .picture, deadCells, this.options.palette)),
+      'random':  () => this.picPainter.updateStatus(fillPicture(this.picPainter
+        .picture, randomCells, this.options.palette)),
+      'reflect': () => this.picPainter
+        .updateStatus(reflectPicture(this.picPainter)),
+      'game-of-life': () => this.picPainter
+        .updateStatus(gameOfLife(this.picPainter.picture))
+    };
 
-    const randomButton = document.getElementById('random');
-    randomButton.addEventListener('click',
-      () => this.picCanv.updateStatus(fillPicture(this.picCanv
-        .picture, randomCells, this.options.palette)));
-
-    const reflectButton = document.getElementById('reflect');
-    reflectButton.addEventListener('click',
-      () => this.picCanv
-        .updateStatus(reflectPicture(this.picCanv)));
-
-    const gameOfLifeButton = document.getElementById('game-of-life');
-    gameOfLifeButton.addEventListener('click',
-      () => this.picCanv.updateStatus(gameOfLife(this.picCanv.picture)));
-
+    buttonsId.map((id) =>  document.getElementById(id)
+      .addEventListener('click', handlers[id]));
   }
 }
 

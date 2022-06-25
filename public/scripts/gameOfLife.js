@@ -26,11 +26,9 @@ function gameOfLife(picture) {
   const aliveNeighbors = new Array(arraySize);
 
   //count alive neighbors for each cell
-
   for (let i = 0; i < arraySize; i++) {
     aliveNeighbors[i] = countAlive(generation, i, arrayWidth, arraySize);
   }
-
 
   for (let i = 0; i < arraySize; i++) {
     if (aliveNeighbors[i] < RULE_1) generation[i].state = CellState.DEAD;
@@ -49,11 +47,11 @@ function countAlive(arrayOfCells, index, w, size) {
   const row = Math.trunc(index / w) * w;
   for (let j = row - w; j < row + w * 2; j += w) {
     for (let i = -1; i < 2; i++) {
-      const I = (w + i + index) % w + (size + j) % size;
-      numAlive += arrayOfCells[I].isAlive();
+      numAlive += arrayOfCells[(w + i + index) % w + (size + j) % size]
+        .isAlive();
     }
   }
-  if (arrayOfCells[index].isAlive) numAlive--;
+  numAlive -= arrayOfCells[index].isAlive();
   return numAlive;
 }
 

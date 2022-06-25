@@ -38,6 +38,7 @@ class Cell {
 
   color() {
     const arrLen = this.palette.length;
+    console.log('len', arrLen);
     if (this.age < arrLen) return this.palette[this.age];
     return this.palette[arrLen - 1];
   }

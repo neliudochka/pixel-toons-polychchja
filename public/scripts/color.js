@@ -5,6 +5,7 @@ Parameters r, g, b range from 0 to 255.
 
 const RANGE = 255;
 const ANGLE = 60;
+const FULL_CIRCLE = 360;
 const hexRadix = 16;
 
 
@@ -41,10 +42,16 @@ class Color {
 
   //"Factory method" that creates color from given HEX value
   static fromHex(hexColor) {
-    const r = parseInt(hexColor.slice(1, 3), hexRadix);
-    const g = parseInt(hexColor.slice(3, 5), hexRadix);
-    const b = parseInt(hexColor.slice(5, 7), hexRadix);
-    return new Color(r, g, b);
+
+    const expression = new RegExp(/#(.{2})(.{2})(.{2})(.{0,2})/);
+    //Getting second to fifth group
+    const result = expression.exec(hexColor).slice(1, 5);
+    const values = result.map((value) => {
+      if (value !== '') return parseInt(value, hexRadix);
+      else return RANGE;
+    });
+
+    return new Color(...values);
   }
 
   //convert rgb to hsl
@@ -66,12 +73,12 @@ class Color {
 
     if (Delta !== 0) {
       const HueRules = new Map([
-        [R, ANGLE * (((G - B) / Delta) % 6)],
+        [R, ANGLE * ((G - B) / Delta) % 6],
         [G, ANGLE * (((B - R) / Delta) + 2)],
         [B, ANGLE * (((R - G) / Delta) + 4)]
       ]);
 
-      H = HueRules.get(Cmax);
+      H = (FULL_CIRCLE + HueRules.get(Cmax)) % FULL_CIRCLE;
       S = Delta / (1 - Math.abs(2 * L - 1));
     }
     return { H, S, L };

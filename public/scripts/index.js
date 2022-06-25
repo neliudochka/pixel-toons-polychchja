@@ -6,7 +6,10 @@ window.onload = () => {
   ee.on('newOptions', (data) => {
     const canvas = document.getElementsByTagName('canvas');
     //очищую, щоб уникнути накладання кількох канвасів
-    if (canvas.length > 0) canvas.item(0).remove();
+    if (canvas.length > 0) {
+      canvas.item(0).remove();
+      canvas.item(0).remove();
+    }
 
     const help = new Application(new Options(...data));
     console.log('help', help);

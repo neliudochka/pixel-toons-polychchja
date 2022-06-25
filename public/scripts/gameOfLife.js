@@ -31,11 +31,11 @@ function gameOfLife(picture) {
   }
 
   for (let i = 0; i < arraySize; i++) {
-    if (aliveNeighbors[i] < RULE_1) generation[i].state = CellState.DEAD;
-    if (aliveNeighbors[i] > RULE_2) generation[i].state = CellState.DEAD;
+    if (aliveNeighbors[i] < RULE_1) generation[i].state = CellState.dead;
+    if (aliveNeighbors[i] > RULE_2) generation[i].state = CellState.dead;
     if (aliveNeighbors[i] === RULE_2 &&
-      generation[i].state === CellState.DEAD) {
-      generation[i].state = CellState.ALIVE;
+      generation[i].state === CellState.dead) {
+      generation[i].state = CellState.alive;
     } else { generation[i].makeOld(); }
   }
 

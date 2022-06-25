@@ -1,5 +1,7 @@
 import { Color } from './color.js';
-const SCALE = 50;
+import { CellState } from './cell.js';
+
+const Scale = 50;
 
 class Options {
   constructor(canvasHeight, deadColor, aliveColor, hueNumber) {
@@ -10,10 +12,13 @@ class Options {
     this.canvasHeight = canvasHeight;
     this.setCanvasWidth();
     this.setPallette(deadColor, aliveColor, hueNumber);
+
+    //brush changes the color of the cell based on its age
+    this.ageBrush = CellState.newBornAge;
   }
 
   setPixelSize() {
-    this.pixelSize = SCALE;
+    this.pixelSize = Scale;
   }
 
   setCanvasWidth() {

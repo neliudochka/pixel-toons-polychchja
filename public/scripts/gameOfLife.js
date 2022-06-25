@@ -28,10 +28,11 @@ function gameOfLife(picture) {
 
   //count alive neighbors for each cell
 
+  console.log('gen', clonePicture);
+
   for (let i = 0; i < arraySize; i++) {
     aliveNeighbors[i] = countAlive(generation, i, arrayWidth, arraySize);
   }
-
 
   for (let i = 0; i < arraySize; i++) {
     if (aliveNeighbors[i] < RULE_1) generation[i].state = CellState.DEAD;

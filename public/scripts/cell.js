@@ -25,6 +25,7 @@ class Cell {
   }
 
   isAlive() {
+    console.log(typeof CellState.DEAD);
     if (this.state === CellState.DEAD) return 0;
     else return 1;
   }

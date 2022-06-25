@@ -16,10 +16,26 @@
                 <div id="popup-content">
                     <div id="popup-close">x</div>
                     <div class="popup-text">Choose palette and canvas size!</div>
+                    <hr>
                     <form>
-                        <label>Choose width&height
+                        <label> Choose width&height
                             <input type="number" id="width-height"
                             min="5" max="15">
+                        </label>
+                        <br>
+                        <label> Choose a color for dead cells
+                            <input type="color" id="dead-color"
+                            value="#ffffff">
+                        </label>
+                        <br>
+                        <label> and for alive ones
+                            <input type="color" id="alive-color"
+                            value="#fc3005">
+                        </label>
+                        <br>
+                        <label> number of hues
+                            <input type="number" id="hues-number"
+                            min="1" max="5">
                         </label>
                         <button class="button" id="popup-ok" type="button">OK</button>
                       </form>

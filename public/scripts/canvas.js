@@ -5,6 +5,8 @@ class Canvas {
     this.createCanvas();
   }
 
+
+  //I`ll rewrite this one
   createCanvas() {
     const canvas = document.createElement('canvas');
     const canvasContainer = document.getElementById('canvas-container');

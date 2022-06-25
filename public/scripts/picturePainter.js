@@ -5,7 +5,6 @@ class PicturePainer {
   constructor(picture, options) {
     this.options = options;
     this.canvas = new Canvas(this).canvas;
-    console.log('picPainter constuctor', this.canvas);
     this.updateStatus(picture);
   }
 
@@ -47,10 +46,6 @@ class PicturePainer {
           pixelSize);
       }
     }
-  }
-
-  fuckingShit() {
-    console.log('bitch, you better be joking');
   }
 }
 

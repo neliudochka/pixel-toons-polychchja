@@ -11,14 +11,11 @@ class Canvas {
     canvasContainer.appendChild(canvas);
     canvas.addEventListener('mousedown',
       (event) => this.drawPixel(event));
-    console.log('canvas ig home!!');
-    console.log('from canvas class', canvas);
     this.canvas = canvas;
   }
 
   drawPixel(event) {
     const coord = this.getMousePosition(event);
-    this.picPainter.fuckingShit();
     this.picPainter.changePixelColor(coord, event);
   }
 

@@ -7,14 +7,10 @@ import { Picture,
   deadCells } from './picture&components.js';
 
 
-//for button initialization
-
-
-
 class Application {
   constructor(options) {
     this.options = options;
-    this.picCanv = new PicturePainer(new Picture(this.options.canvasWidth,
+    this.picPainter = new PicturePainer(new Picture(this.options.canvasWidth,
       this.options.canvasHeight,
       this.options.palette), this.options);
     this.setUpButtons();
@@ -23,14 +19,14 @@ class Application {
   setUpButtons() {
     const buttonsId = ['restart', 'random', 'reflect', 'game-of-life'];
     const handlers = {
-      'restart': () => this.picCanv.updateStatus(fillPicture(this.picCanv
+      'restart': () => this.picPainter.updateStatus(fillPicture(this.picPainter
         .picture, deadCells, this.options.palette)),
-      'random':  () => this.picCanv.updateStatus(fillPicture(this.picCanv
+      'random':  () => this.picPainter.updateStatus(fillPicture(this.picPainter
         .picture, randomCells, this.options.palette)),
-      'reflect': () => this.picCanv
-        .updateStatus(reflectPicture(this.picCanv)),
-      'game-of-life': () => this.picCanv
-        .updateStatus(gameOfLife(this.picCanv.picture))
+      'reflect': () => this.picPainter
+        .updateStatus(reflectPicture(this.picPainter)),
+      'game-of-life': () => this.picPainter
+        .updateStatus(gameOfLife(this.picPainter.picture))
     };
 
     buttonsId.map((id) =>  document.getElementById(id)

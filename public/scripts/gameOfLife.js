@@ -18,7 +18,6 @@ const RULE_1 = 2;
 const RULE_2 = 3;
 
 function gameOfLife(picture) {
-  console.log(picture);
   const clonePicture = picture.copy();
   const arraySize = clonePicture.size;
   const arrayWidth = clonePicture.width;
@@ -27,14 +26,10 @@ function gameOfLife(picture) {
   const aliveNeighbors = new Array(arraySize);
 
   //count alive neighbors for each cell
-
-  console.log('gen', clonePicture);
-
   for (let i = 0; i < arraySize; i++) {
     aliveNeighbors[i] = countAlive(generation, i, arrayWidth, arraySize);
   }
 
-  console.log('n', aliveNeighbors);
   for (let i = 0; i < arraySize; i++) {
     if (aliveNeighbors[i] < RULE_1) generation[i].state = CellState.DEAD;
     if (aliveNeighbors[i] > RULE_2) generation[i].state = CellState.DEAD;
@@ -44,7 +39,6 @@ function gameOfLife(picture) {
     } else { generation[i].makeOld(); }
   }
 
-  console.log(clonePicture);
   return clonePicture;
 }
 

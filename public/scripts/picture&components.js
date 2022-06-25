@@ -9,7 +9,6 @@ class Picture {
   }
 
   pixel(x, y) {
-    console.log('i need cell', this.pixels[x + y * this.width]);
     return this.pixels[x + y * this.width];
   }
 

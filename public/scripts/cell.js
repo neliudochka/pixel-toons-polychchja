@@ -25,7 +25,6 @@ class Cell {
   }
 
   isAlive() {
-    console.log(typeof CellState.DEAD);
     if (this.state === CellState.DEAD) return 0;
     else return 1;
   }
@@ -38,7 +37,6 @@ class Cell {
 
   color() {
     const arrLen = this.palette.length;
-    console.log('len', arrLen);
     if (this.age < arrLen) return this.palette[this.age];
     return this.palette[arrLen - 1];
   }
@@ -46,7 +44,6 @@ class Cell {
   copy() {
     const newCell = new Cell(this._state, this.palette);
     newCell.age = this.age;
-    console.log(newCell);
     return newCell;
   }
 }

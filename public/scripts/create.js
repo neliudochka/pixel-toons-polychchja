@@ -21,7 +21,6 @@ function getInput() {
   const inputId = ['width-height', 'dead-color', 'alive-color', 'hues-number'];
   Data = inputId.map((id) => document.getElementById(id).value);
   changePopupDisplay(popup);
-  console.log('data', Data);
   ee.emit('newOptions', Data);
 }
 

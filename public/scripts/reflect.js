@@ -4,7 +4,7 @@ function reflectPicture(picCanv) {
 
   let limit = clonePicture.width;
 
-  //made in order to prevent iternal reflect
+  //condition in order to prevent iternal reflect
   if (clonePicture.width === picCanv.options.fullCanvasWidth) {
     limit = picCanv.options.canvasWidth;
   }

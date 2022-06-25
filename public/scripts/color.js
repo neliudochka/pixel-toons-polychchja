@@ -3,7 +3,10 @@ Class that represents color in RGB format.
 Parameters r, g, b range from 0 to 255.
  */
 
-const range = 255;
+const RANGE = 255;
+const ANGLE = 60;
+const hexRadix = 16;
+
 
 class Color {
   constructor(r, g, b) {
@@ -12,25 +15,15 @@ class Color {
     this.b = b;
   }
 
-  //"Factory method" that creates color from given HEX value
-  static fromHex(hexColor) {
-    const radix = 16;
-
-    const r = parseInt(hexColor.slice(1, 3), radix);
-    const g = parseInt(hexColor.slice(3, 5), radix);
-    const b = parseInt(hexColor.slice(5, 7), radix);
-    return new Color(r, g, b);
-  }
-
   //convert hsl to rgb
   //more about algorithm here:
   //https://www.rapidtables.com/convert/color/hsl-to-rgb.html
-  static fromHSL(H, S, L) {
+  static fromHSL({ H, S, L }) {
     const C = (1 - Math.abs(2 * L - 1)) * S;
-    const X = C * (1 - Math.abs((H / 60) % 2 - 1));
+    const X = C * (1 - Math.abs((H / ANGLE) % 2 - 1));
     const m = L - C / 2;
 
-    const rule = Math.floor(H / 60);
+    const rule = Math.floor(H / ANGLE);
     const rules = new Map([
       [0, [C, X, 0]],
       [1, [X, C, 0]],
@@ -40,10 +33,17 @@ class Color {
       [5, [C, 0, X]]
     ]);
     const [R, G, B] = rules.get(rule);
-    const r = Math.round((R + m) * range);
-    const g = Math.round((G + m) * range);
-    const b = Math.round((B + m) * range);
-    console.log(rules);
+    const r = Math.round((R + m) * RANGE);
+    const g = Math.round((G + m) * RANGE);
+    const b = Math.round((B + m) * RANGE);
+    return new Color(r, g, b);
+  }
+
+  //"Factory method" that creates color from given HEX value
+  static fromHex(hexColor) {
+    const r = parseInt(hexColor.slice(1, 3), hexRadix);
+    const g = parseInt(hexColor.slice(3, 5), hexRadix);
+    const b = parseInt(hexColor.slice(5, 7), hexRadix);
     return new Color(r, g, b);
   }
 
@@ -51,9 +51,9 @@ class Color {
   //more about algorithm here:
   //https://www.rapidtables.com/convert/color/rgb-to-hsl.html
   toHSL() {
-    const R = this.r / 255;
-    const G = this.g / 255;
-    const B = this.b / 255;
+    const R = this.r / RANGE;
+    const G = this.g / RANGE;
+    const B = this.b / RANGE;
 
     const Cmax = Math.max(R, G, B);
     const Cmin = Math.min(R, G, B);
@@ -66,27 +66,45 @@ class Color {
 
     if (Delta !== 0) {
       const HueRules = new Map([
-        [R, 60 * (((G - B) / Delta) % 6)],
-        [G, 60 * (((B - R) / Delta) + 2)],
-        [B, 60 * (((R - G) / Delta) + 4)]
+        [R, ANGLE * (((G - B) / Delta) % 6)],
+        [G, ANGLE * (((B - R) / Delta) + 2)],
+        [B, ANGLE * (((R - G) / Delta) + 4)]
       ]);
 
       H = HueRules.get(Cmax);
       S = Delta / (1 - Math.abs(2 * L - 1));
     }
-    console.log(H);
     return { H, S, L };
+  }
+
+  toHex() {
+    let hex = '#';
+    const colors = { r: this.r, g: this.g, b: this.b };
+    for (const key in colors) {
+      let item = colors[key].toString(hexRadix);
+      if (item.length === 1) item = '0' + item;
+      hex += item;
+    }
+    return hex;
   }
 
 }
 
-const C = Color.fromHSL(247, 0.5, 0.3);
-
-//export { Color };
-
-console.log(
-  C
-);
+export { Color };
 
 
-//export { Color };
+setPallette(deadColor, aliveColor, hueNumber) {
+  this.palette = [deadColor, aliveColor];
+  const aliveHSL = Color.fromHex(aliveColor).toHSL();
+  const interval = aliveHSL.L / hueNumber;
+  console.log('alive', aliveHSL);
+  for (let i = 2; i < 2 + hueNumber; i++) {
+    const hueHSL = aliveHSL;
+    hueHSL.L = aliveHSL.L - interval;
+    console.log('hue', hueHSL);
+    console.log(Color.fromHSL(hueHSL).toHex());
+    const hue = Color.fromHSL(hueHSL).toHex();
+    this.palette.push(hue);
+    hueNumber--;
+  }
+}

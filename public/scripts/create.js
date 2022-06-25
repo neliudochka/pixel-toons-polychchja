@@ -17,9 +17,12 @@ function changePopupDisplay(popup) {
 }
 
 function getInput() {
-  const input = document.getElementById('width-height');
+  let Data = [];
+  const inputId = ['width-height', 'dead-color', 'alive-color', 'hues-number'];
+  Data = inputId.map((id) => document.getElementById(id).value);
   changePopupDisplay(popup);
-  ee.emit('newOptions', parseInt(input.value));
+  console.log('data', Data);
+  ee.emit('newOptions', Data);
 }
 
 //Create button

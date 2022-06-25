@@ -34,6 +34,8 @@ function gameOfLife(picture) {
     aliveNeighbors[i] = countAlive(generation, i, arrayWidth, arraySize);
   }
 
+
+  console.log("n", aliveNeighbors)
   for (let i = 0; i < arraySize; i++) {
     if (aliveNeighbors[i] < RULE_1) generation[i].state = CellState.DEAD;
     if (aliveNeighbors[i] > RULE_2) generation[i].state = CellState.DEAD;

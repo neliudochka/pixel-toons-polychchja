@@ -45,6 +45,7 @@ class Cell {
   copy() {
     const newCell = new Cell(this._state, this.palette);
     newCell.age = this.age;
+    console.log(newCell);
     return newCell;
   }
 }

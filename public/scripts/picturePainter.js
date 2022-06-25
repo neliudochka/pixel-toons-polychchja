@@ -1,6 +1,11 @@
+import { Canvas } from './canvas.js';
+
+
 class PicturePainer {
   constructor(picture, options) {
     this.options = options;
+    this.canvas = new Canvas(this).canvas;
+    console.log('picPainter constuctor', this.canvas);
     this.updateStatus(picture);
   }
 
@@ -9,21 +14,55 @@ class PicturePainer {
       return;
     } else {
       this.picture = picture;
-      drawPicture(picture, this.checkCanvas(this.canvas), this.options);
+      this.drawPicture(picture);
     }
   }
 
-  checkCanvas(canvas) {
-    if (!canvas) this.canvas = createCanvas(this);
-    return this.canvas;
+  changePixelColor({ x, y }, event) {
+    const canvas = event.target;
+    const ctx = canvas.getContext('2d');
+
+    this.picture.pixel(x, y).state = 1;
+    ctx.fillStyle = this.picture.pixel(x, y).color();
+    ctx.fillRect(
+      x * this.options.pixelSize,
+      y * this.options.pixelSize,
+      this.options.pixelSize,
+      this.options.pixelSize);
+  }
+
+  drawPicture() {
+    const pixelSize = this.options.pixelSize;
+
+    this.canvas.width = this.picture.width * pixelSize;
+    this.canvas.height = this.picture.height * pixelSize;
+    const ctx = this.canvas.getContext('2d');
+    for (let y = 0; y < this.picture.height; y++) {
+      for (let x = 0; x < this.picture.width; x++) {
+        ctx.fillStyle = this.picture.pixel(x, y).color();
+        ctx.fillRect(
+          x * pixelSize,
+          y * pixelSize,
+          pixelSize,
+          pixelSize);
+      }
+    }
+  }
+
+  fuckingShit() {
+    console.log('bitch, you better be joking');
   }
 }
 
-function createCanvas(picCanv) {
+
+
+
+/*
+function createCanvas(picPainter) {
   const canvas = document.createElement('canvas');
   const canvasContainer = document.getElementById('canvas-container');
   canvasContainer.appendChild(canvas);
-  canvas.addEventListener('mousedown', (event) => drawPixel(event, picCanv));
+  canvas.addEventListener('mousedown', (event) => drawPixel(event, picPainter));
   return canvas;
 }
 
@@ -40,6 +79,21 @@ function getMousePosition(event, options) {
   };
 }
 
+function changePixelColor({ x, y }, event) {
+  const canvas = event.target;
+  const ctx = canvas.getContext('2d');
+
+
+  const picture = this.picPainter.picture;
+  picture.pixels[x + y * picture.width].state = 1;
+  ctx.fillStyle = picture.pixel(x, y).color();
+  ctx.fillRect(
+    x * this.picCanv.options.pixelSize,
+    y * this.picCanv.options.pixelSize,
+    this.picCanv.options.pixelSize,
+    this.picCanv.options.pixelSize);
+}
+
 function changePixelColor({ x, y }, event, picCanv) {
   const canvas = event.target;
   const ctx = canvas.getContext('2d');
@@ -52,20 +106,9 @@ function changePixelColor({ x, y }, event, picCanv) {
     picCanv.options.pixelSize);
 }
 
-function drawPicture(picture, canvas, options) {
-  canvas.width = picture.width * options.pixelSize;
-  canvas.height = picture.height * options.pixelSize;
-  const ctx = canvas.getContext('2d');
-  for (let y = 0; y < picture.height; y++) {
-    for (let x = 0; x < picture.width; x++) {
-      ctx.fillStyle = picture.pixel(x, y).color();
-      ctx.fillRect(
-        x * options.pixelSize,
-        y * options.pixelSize,
-        options.pixelSize,
-        options.pixelSize);
-    }
-  }
-}
+
+*/
+
+
 
 export { PicturePainer };

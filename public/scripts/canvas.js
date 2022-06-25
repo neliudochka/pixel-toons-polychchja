@@ -1,0 +1,34 @@
+class Canvas {
+  constructor(picPainter) {
+    this.picPainter = picPainter;
+    this.pixelSize  = this.picPainter.options.pixelSize;
+    this.createCanvas();
+  }
+
+  createCanvas() {
+    const canvas = document.createElement('canvas');
+    const canvasContainer = document.getElementById('canvas-container');
+    canvasContainer.appendChild(canvas);
+    canvas.addEventListener('mousedown',
+      (event) => this.drawPixel(event));
+    console.log('canvas ig home!!');
+    console.log('from canvas class', canvas);
+    this.canvas = canvas;
+  }
+
+  drawPixel(event) {
+    const coord = this.getMousePosition(event);
+    this.picPainter.fuckingShit();
+    this.picPainter.changePixelColor(coord, event);
+  }
+
+  getMousePosition(event) {
+    const canPos = event.target.getBoundingClientRect();
+    return {
+      x: Math.floor((event.clientX - canPos.left) / this.pixelSize),
+      y: Math.floor((event.clientY - canPos.top) / this.pixelSize)
+    };
+  }
+}
+
+export { Canvas };

@@ -42,7 +42,6 @@ class Color {
 
   //"Factory method" that creates color from given HEX value
   static fromHex(hexColor) {
-
     const expression = new RegExp(/#(.{2})(.{2})(.{2})(.{0,2})/);
     //Getting second to fifth group
     const result = expression.exec(hexColor).slice(1, 5);

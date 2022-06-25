@@ -1,17 +1,15 @@
 /*
-Class that represents color in RGBA format.
+Class that represents color in RGB format.
 Parameters r, g, b range from 0 to 255.
-Parameter alpha ranges from 0 to 255.
  */
 
 const range = 255;
 
 class Color {
-  constructor(r, g, b, alpha = 255) {
+  constructor(r, g, b) {
     this.r = r;
     this.g = g;
     this.b = b;
-    this.alpha = alpha;
   }
 
   //"Factory method" that creates color from given HEX value
@@ -21,6 +19,31 @@ class Color {
     const r = parseInt(hexColor.slice(1, 3), radix);
     const g = parseInt(hexColor.slice(3, 5), radix);
     const b = parseInt(hexColor.slice(5, 7), radix);
+    return new Color(r, g, b);
+  }
+
+  //convert hsl to rgb
+  //more about algorithm here:
+  //https://www.rapidtables.com/convert/color/hsl-to-rgb.html
+  static fromHSL(H, S, L) {
+    const C = (1 - Math.abs(2 * L - 1)) * S;
+    const X = C * (1 - Math.abs((H / 60) % 2 - 1));
+    const m = L - C / 2;
+
+    const rule = Math.floor(H / 60);
+    const rules = new Map([
+      [0, [C, X, 0]],
+      [1, [X, C, 0]],
+      [2, [0, C, X]],
+      [3, [0, X, C]],
+      [4, [X, 0, C]],
+      [5, [C, 0, X]]
+    ]);
+    const [R, G, B] = rules.get(rule);
+    const r = Math.round((R + m) * range);
+    const g = Math.round((G + m) * range);
+    const b = Math.round((B + m) * range);
+    console.log(rules);
     return new Color(r, g, b);
   }
 
@@ -55,22 +78,14 @@ class Color {
     return { H, S, L };
   }
 
-  //Converts color to RGBA CSS format.
-  //Use when passing color to CSS style parameter
-  toString() {
-    return `rgba(${this.r},${this.g},${this.b},${this.alpha / range})`;
-  }
-
 }
 
-const C = new Color(2).toHSL();
+const C = Color.fromHSL(247, 0.5, 0.3);
 
 //export { Color };
 
 console.log(
-  C.H.toFixed(2),
-  C.S.toFixed(2),
-  C.L.toFixed(2)
+  C
 );
 
 

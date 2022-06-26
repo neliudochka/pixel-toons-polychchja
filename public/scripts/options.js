@@ -3,9 +3,9 @@ import { CellState } from './cell.js';
 
 const Scale = 50;
 const CanvasOptions = {
-  'canvas': {
+  'polotno': {
     type: 'canvas',
-    container: 'canvas-container',
+    container: 'polotno-container',
     handler: '(event) => this.drawPixel(event)'
   },
   'palitra': {
@@ -22,7 +22,7 @@ class Options {
     hueNumber = parseInt(hueNumber);
 
     //option for different type of canvaces (canvas||palitra)
-    this.canvas = CanvasOptions.canvas;
+    this.canvas = CanvasOptions.polotno;
     this.palitra = CanvasOptions.palitra;
     this.common = {};
 

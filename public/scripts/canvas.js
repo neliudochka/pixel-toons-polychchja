@@ -8,7 +8,8 @@ class Canvas {
     const element = document.createElement(typeOpt.type);
     const container = document.getElementById(typeOpt.container);
     container.appendChild(element);
-    element.addEventListener('mousedown', eval(typeOpt.handler));
+    element.addEventListener('mousedown',
+      (event) => typeOpt.handler(event, this));
     this.canvas = element;
   }
 
@@ -17,11 +18,6 @@ class Canvas {
     console.log(picPainter);
     this.pixelSize  = this.picPainter.options.pixelSize;
   }
-  /*
-  handler() {
-
-  }
-*/
 
   drawPixel(event) {
     const coord = this.getMousePosition(event);

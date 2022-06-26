@@ -3,15 +3,15 @@ import { Color } from './color.js';
 
 const Scale = 50;
 const CanvasOptions = {
-  'polotno': {
+  polotno: {
     type: 'canvas',
     container: 'polotno-container',
-    handler: '(event) => this.drawPixel(event)'
+    handler: (event, canv) => canv.drawPixel(event)
   },
-  'palitra': {
+  palitra: {
     type: 'canvas',
     container: 'palitra-container',
-    handler: '(event) => this.pickColor(event)'
+    handler: (event, canv) => canv.pickColor(event)
   }
 };
 

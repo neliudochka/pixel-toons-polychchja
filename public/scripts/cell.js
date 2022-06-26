@@ -1,14 +1,17 @@
 const CellState = {
-  alive: 'alive',
-  dead: 'dead',
-  newBornAge: 1,
-  deadAge: 0
+  ALIVE: 'alive',
+  DEAD: 'dead'
+};
+
+const CellAge = {
+  NEW_BORN_AGE: 1,
+  DEAD_AGE: 0
 };
 
 class Cell {
-  constructor(state = CellState.dead, palette) {
-    this.state = state;
+  constructor(palette, state = CellState.DEAD) {
     this.palette = palette;
+    this.state = state;
   }
 
   get state() {
@@ -16,23 +19,23 @@ class Cell {
   }
 
   set state(value) {
-    if (value === CellState.dead || value === CellState.deadAge) {
-      this._state = CellState.dead;
-      this.age = CellState.deadAge;
+    if (value === CellState.DEAD || value === CellAge.DEAD_AGE) {
+      this._state = CellState.DEAD;
+      this.age = CellAge.DEAD_AGE;
     }
-    if (value === CellState.alive || value === CellState.newBornAge) {
-      this._state = CellState.alive;
-      this.age = CellState.newBornAge;
+    if (value === CellState.ALIVE || value === CellAge.NEW_BORN_AGE) {
+      this._state = CellState.ALIVE;
+      this.age = CellAge.NEW_BORN_AGE;
     }
   }
 
   isAlive() {
-    if (this.state === CellState.dead) return CellState.deadAge;
+    if (this.state === CellState.DEAD) return CellAge.DEAD_AGE;
     else return 1;
   }
 
   makeOld() {
-    if (this._state === CellState.alive) {
+    if (this._state === CellState.ALIVE) {
       this.age++;
     }
   }
@@ -43,23 +46,24 @@ class Cell {
     return this.palette[arrLen - 1];
   }
 
-  copy() {
-    const newCell = new Cell(this._state, this.palette);
+  clone() {
+    const newCell = new Cell(this.palette, this._state);
     newCell.age = this.age;
     return newCell;
   }
 
   //only for palette and drawing
   setAge(age) {
-    if (age !== CellState.deadAge) {
-      this._state = CellState.alive;
+    if (age !== CellAge.DEAD_AGE) {
+      this._state = CellState.ALIVE;
       this.age = age;
     } else {
-      this._state = CellState.dead;
-      this.age = CellState.deadAge;
+      this._state = CellState.DEAD;
+      this.age = CellAge.DEAD_AGE;
     }
   }
 }
 
-export { CellState };
 export { Cell };
+export { CellState };
+export { CellAge };

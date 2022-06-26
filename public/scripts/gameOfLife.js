@@ -18,7 +18,7 @@ const RULE_1 = 2;
 const RULE_2 = 3;
 
 function gameOfLife(picture) {
-  const clonePicture = picture.copy();
+  const clonePicture = picture.clone();
   const arraySize = clonePicture.size;
   const arrayWidth = clonePicture.width;
 
@@ -31,12 +31,15 @@ function gameOfLife(picture) {
   }
 
   for (let i = 0; i < arraySize; i++) {
-    if (aliveNeighbors[i] < RULE_1) generation[i].state = CellState.dead;
-    if (aliveNeighbors[i] > RULE_2) generation[i].state = CellState.dead;
+    if (aliveNeighbors[i] < RULE_1) generation[i].state = CellState.DEAD;
+    if (aliveNeighbors[i] > RULE_2) generation[i].state = CellState.DEAD;
     if (aliveNeighbors[i] === RULE_2 &&
-      generation[i].state === CellState.dead) {
-      generation[i].state = CellState.alive;
-    } else { generation[i].makeOld(); }
+      generation[i].state === CellState.DEAD) {
+      generation[i].state = CellState.ALIVE;
+    }
+    else {
+      generation[i].makeOld();
+    }
   }
 
   return clonePicture;

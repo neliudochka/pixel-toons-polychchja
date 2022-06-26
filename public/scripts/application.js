@@ -1,11 +1,11 @@
-import { gameOfLife } from './gameOfLife.js';
-import { reflectPicture } from './reflect.js';
 import { PicturePainter } from './picturePainter.js';
+import { Polotno, Palitra } from './canvas.js';
 import { Picture,
   fillPicture,
   randomCells,
   deadCells } from './picture&components.js';
-import { increasingNumbArr } from './myFunctions.js';
+import { reflectPicture } from './reflect.js';
+import { gameOfLife } from './gameOfLife.js';
 
 
 class Application {
@@ -14,40 +14,50 @@ class Application {
     //виношу, бо багато де використовується
     this.palette = options.common.palette;
 
-    this.createCanvas();
+    this.createPolotno();
     this.createPalitra();
     this.createButtons();
   }
 
-  createCanvas() {
-    const canvOpt = this.options.canvas;
-    this.picPainter = new PicturePainter(
-      new Picture(canvOpt.canvasWidth, canvOpt.canvasHeight, this.palette),
-      this.options.common, canvOpt);
+  createPolotno() {
+    const polOpt = this.options.polotno;
+
+    this.polotno = new PicturePainter(
+      this.options.common,
+      new Polotno(polOpt),
+      new Picture(polOpt.polotnoWidth, polOpt.polotnoHeight, this.palette)
+    );
   }
 
   createPalitra() {
     const palOpt = this.options.palitra;
 
-    console.log(palOpt);
     const palitraPic = new Picture(palOpt.length,
-      palOpt.height, this.palette);
-    increasingNumbArr(palOpt.length)
-      .map((i) => palitraPic.pixels[i].setAge(i));
-    this.palitra = new PicturePainter(palitraPic, this.options.common, palOpt);
+      palOpt.height,
+      this.palette);
+
+    for (let i = 0; i < palOpt.length; i++) {
+      palitraPic.pixels[i].setAge(i);
+    }
+
+    this.palitra = new PicturePainter(
+      this.options.common,
+      new Palitra(palOpt),
+      palitraPic
+    );
   }
 
   createButtons() {
     const buttonsId = ['restart', 'random', 'reflect', 'game-of-life'];
     const handlers = {
-      'restart': () => this.picPainter.updateStatus(fillPicture(this.picPainter
+      'restart': () => this.polotno.updateStatus(fillPicture(this.polotno
         .picture, deadCells, this.palette)),
-      'random':  () => this.picPainter.updateStatus(fillPicture(this.picPainter
+      'random':  () => this.polotno.updateStatus(fillPicture(this.polotno
         .picture, randomCells, this.palette)),
-      'reflect': () => this.picPainter
-        .updateStatus(reflectPicture(this.picPainter.picture)),
-      'game-of-life': () => this.picPainter
-        .updateStatus(gameOfLife(this.picPainter.picture))
+      'reflect': () => this.polotno
+        .updateStatus(reflectPicture(this.polotno.picture)),
+      'game-of-life': () => this.polotno
+        .updateStatus(gameOfLife(this.polotno.picture))
     };
 
     buttonsId.map((id) =>  document.getElementById(id)

@@ -1,27 +1,24 @@
 class Canvas {
-  constructor(picPainter, typeOpt) {
-    this.picPainter = picPainter;
-    this.pixelSize  = this.picPainter.options.pixelSize;
+  constructor(typeOpt) {
     this.createCanvas(typeOpt);
   }
-
 
   createCanvas(typeOpt) {
     const element = document.createElement(typeOpt.type);
     const container = document.getElementById(typeOpt.container);
     container.appendChild(element);
-    element.addEventListener('mousedown', eval(typeOpt.handler));
+    element.addEventListener('mousedown',
+      (event) => this.callMouseDown(event));
     this.canvas = element;
   }
 
-  drawPixel(event) {
-    const coord = this.getMousePosition(event);
-    this.picPainter.changePixelColor(coord, event);
+  callMouseDown() {
+    console.log('oh no... you chose the parent class (Canvas)');
   }
 
-  pickColor() {
-    const coord = this.getMousePosition(event);
-    this.picPainter.changeAgeBrush(coord, event);
+  bindPicPainter(picPainter) {
+    this.picPainter = picPainter;
+    this.pixelSize  = this.picPainter.options.pixelSize;
   }
 
   getMousePosition(event) {
@@ -34,4 +31,27 @@ class Canvas {
 
 }
 
-export { Canvas };
+class Polotno extends Canvas {
+  callMouseDown(event) {
+    this.drawPixel(event);
+  }
+
+  drawPixel(event) {
+    const coord = this.getMousePosition(event);
+    this.picPainter.changePixelColor(coord, event);
+  }
+}
+
+class Palitra extends Canvas {
+  callMouseDown(event) {
+    this.pickColor(event);
+  }
+
+  pickColor(event) {
+    const coord = this.getMousePosition(event);
+    this.picPainter.changeAgeBrush(coord, event);
+  }
+}
+
+export { Polotno };
+export { Palitra };

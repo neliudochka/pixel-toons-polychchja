@@ -23,7 +23,8 @@ function fillPicture(picture, func, palette) {
   let newPicture = {};
   if (picture.pixels) {
     newPicture = picture.clone();
-  } else { newPicture = picture; }
+  }
+  else { newPicture = picture; }
   newPicture.pixels = func(picture.size).map((val) => new Cell(val, palette));
   return newPicture;
 }

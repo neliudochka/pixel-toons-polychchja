@@ -1,8 +1,8 @@
 import { CellAge } from './cell.js';
 import { Color } from './color.js';
 
-const Scale = 50;
-const CanvasOptions = {
+const SCALE = 50;
+const CANVAS_OPTIONS = {
   polotno: {
     type: 'canvas',
     container: 'polotno-container',
@@ -14,6 +14,7 @@ const CanvasOptions = {
     handler: (event, canv) => canv.pickColor(event)
   }
 };
+const PALITRA_HEIGHT = 1;
 
 
 class Options {
@@ -22,8 +23,8 @@ class Options {
     hueNumber = parseInt(hueNumber);
 
     //option for different type of canvaces (canvas||palitra)
-    this.polotno = CanvasOptions.polotno;
-    this.palitra = CanvasOptions.palitra;
+    this.polotno = CANVAS_OPTIONS.polotno;
+    this.palitra = CANVAS_OPTIONS.palitra;
     this.common = {};
 
     this.setUpPalette(deadColor, aliveColor, hueNumber);
@@ -34,7 +35,7 @@ class Options {
   }
 
   setUpCommonOptions() {
-    this.common.pixelSize = Scale;
+    this.common.pixelSize = SCALE;
     //brush changes the color of the cell based on its age
     this.common.ageBrush = CellAge.NEW_BORN_AGE;
 
@@ -60,7 +61,7 @@ class Options {
 
   setUpPalitraOptions() {
     this.palitra.length = this.common.palette.length;
-    this.palitra.height = 1;
+    this.palitra.height = PALITRA_HEIGHT;
   }
 
 }

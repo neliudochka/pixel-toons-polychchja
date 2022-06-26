@@ -26,6 +26,7 @@
         "code": 80,
         "ignoreUrls": true
       }
-    ]
+    ],
+    "brace-style": "off"
   }
 }

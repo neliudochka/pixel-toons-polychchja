@@ -36,7 +36,8 @@ function gameOfLife(picture) {
     if (aliveNeighbors[i] === RULE_2 &&
       generation[i].state === CellState.DEAD) {
       generation[i].state = CellState.ALIVE;
-    } else { generation[i].makeOld(); }
+    }
+    else { generation[i].makeOld(); }
   }
 
   return clonePicture;

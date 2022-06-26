@@ -1,5 +1,5 @@
-import { Color } from './color.js';
 import { CellState } from './cell.js';
+import { Color } from './color.js';
 
 const Scale = 50;
 const CanvasOptions = {

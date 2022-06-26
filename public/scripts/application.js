@@ -1,11 +1,11 @@
-import { gameOfLife } from './gameOfLife.js';
-import { reflectPicture } from './reflect.js';
 import { PicturePainter } from './picturePainter.js';
+import { Canvas } from './canvas.js';
 import { Picture,
   fillPicture,
   randomCells,
   deadCells } from './picture&components.js';
-import { Canvas } from './canvas.js';
+import { reflectPicture } from './reflect.js';
+import { gameOfLife } from './gameOfLife.js';
 import { increasingNumbArr } from './myFunctions.js';
 
 

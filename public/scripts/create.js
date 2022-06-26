@@ -12,8 +12,8 @@ const popupOk = document.getElementById('popup-ok');
 popupOk.addEventListener('click', () => getInput());
 
 function changePopupDisplay(popup) {
-  if (popup.style.display !== 'block') popup.style.display = 'block';
-  else popup.style.display = 'none';
+  if (popup.style.display !== 'none') popup.style.display = 'none';
+  else popup.style.display = 'block';
 }
 
 function getInput() {

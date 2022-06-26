@@ -49,7 +49,7 @@ class Palitra extends Canvas {
 
   pickColor(event) {
     const coord = this.getMousePosition(event);
-    this.picPainter.changeAgeBrush(coord, event);
+    this.picPainter.changeAgeBrush(coord);
   }
 }
 

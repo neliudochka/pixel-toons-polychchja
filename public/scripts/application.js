@@ -1,12 +1,11 @@
 import { PicturePainter } from './picturePainter.js';
-import { Canvas } from './canvas.js';
+import { Polotno, Palitra } from './canvas.js';
 import { Picture,
   fillPicture,
   randomCells,
   deadCells } from './picture&components.js';
 import { reflectPicture } from './reflect.js';
 import { gameOfLife } from './gameOfLife.js';
-import { increasingNumbArr } from './myFunctions.js';
 
 
 class Application {
@@ -25,7 +24,7 @@ class Application {
 
     this.polotno = new PicturePainter(
       this.options.common,
-      new Canvas(polOpt),
+      new Polotno(polOpt),
       new Picture(polOpt.polotnoWidth, polOpt.polotnoHeight, this.palette)
     );
   }
@@ -34,14 +33,16 @@ class Application {
     const palOpt = this.options.palitra;
 
     const palitraPic = new Picture(palOpt.length,
-      palOpt.height, this.palette);
+      palOpt.height,
+      this.palette);
 
-    increasingNumbArr(palOpt.length)
-      .map((i) => palitraPic.pixels[i].setAge(i));
+    for (let i = 0; i < palOpt.length; i++) {
+      palitraPic.pixels[i].setAge(i);
+    }
 
     this.palitra = new PicturePainter(
       this.options.common,
-      new Canvas(palOpt),
+      new Palitra(palOpt),
       palitraPic
     );
   }

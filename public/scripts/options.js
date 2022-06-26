@@ -6,7 +6,8 @@ const CanvasOptions = {
   'polotno': {
     type: 'canvas',
     container: 'polotno-container',
-    handler: '(event) => this.drawPixel(event)'
+    handler(event) { console.log('log') },
+    //this.drawPixel(event);
   },
   'palitra': {
     type: 'canvas',
@@ -17,19 +18,19 @@ const CanvasOptions = {
 
 
 class Options {
-  constructor(canvasHeight, deadColor, aliveColor, hueNumber) {
-    canvasHeight = parseInt(canvasHeight);
+  constructor(polotnoHeight, deadColor, aliveColor, hueNumber) {
+    polotnoHeight = parseInt(polotnoHeight);
     hueNumber = parseInt(hueNumber);
 
     //option for different type of canvaces (canvas||palitra)
-    this.canvas = CanvasOptions.polotno;
+    this.polotno = CanvasOptions.polotno;
     this.palitra = CanvasOptions.palitra;
     this.common = {};
 
     this.setUpPalette(deadColor, aliveColor, hueNumber);
 
     this.setUpCommonOptions();
-    this.setUpCanvasOptions(canvasHeight);
+    this.setUpPolotnoOptions(polotnoHeight);
     this.setUpPalitraOptions();
   }
 
@@ -53,11 +54,9 @@ class Options {
     this.common.palette = palette;
   }
 
-  setUpCanvasOptions(canvasHeight) {
-    this.canvas.canvasHeight = canvasHeight;
-    this.canvas.canvasWidth = Math.round(canvasHeight / 2);
-    //потрібно для reflect і в майбутньому для прямокутних форм
-    this.canvas.fullCanvasWidth = canvasHeight;
+  setUpPolotnoOptions(polotnoHeight) {
+    this.polotno.polotnoHeight = polotnoHeight;
+    this.polotno.polotnoWidth = Math.round(polotnoHeight / 2);
   }
 
   setUpPalitraOptions() {

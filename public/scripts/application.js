@@ -14,16 +14,17 @@ class Application {
     //виношу, бо багато де використовується
     this.palette = options.common.palette;
 
-    this.createCanvas();
+    this.createPolotno();
     this.createPalitra();
     this.createButtons();
   }
 
-  createCanvas() {
-    const canvOpt = this.options.canvas;
+  createPolotno() {
+    const polOpt = this.options.polotno;
+
     this.picPainter = new PicturePainter(
-      new Picture(canvOpt.canvasWidth, canvOpt.canvasHeight, this.palette),
-      this.options.common, canvOpt);
+      new Picture(polOpt.polotnoWidth, polOpt.polotnoHeight, this.palette),
+      this.options.common, polOpt);
   }
 
   createPalitra() {

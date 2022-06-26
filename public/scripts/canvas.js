@@ -10,9 +10,15 @@ class Canvas {
     const element = document.createElement(typeOpt.type);
     const container = document.getElementById(typeOpt.container);
     container.appendChild(element);
-    element.addEventListener('mousedown', eval(typeOpt.handler));
+    element.addEventListener('mousedown', () => typeOpt.handler());
     this.canvas = element;
   }
+
+  /*
+  handler() {
+
+  }
+*/
 
   drawPixel(event) {
     const coord = this.getMousePosition(event);

@@ -36,7 +36,7 @@ class Options {
   setUpCommonOptions() {
     this.common.pixelSize = Scale;
     //brush changes the color of the cell based on its age
-    this.common.ageBrush = CellState.newBornAge;
+    this.common.ageBrush = CellState.NEW_BORN_AGE;
 
   }
 

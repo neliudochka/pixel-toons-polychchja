@@ -1,6 +1,6 @@
 import { ee } from './create.js';
 import { Application } from './application.js';
-import { Options } from './options.js';
+import { Options } from './options/options.js';
 
 window.onload = () => {
   ee.on('newOptions', (data) => {

@@ -19,15 +19,12 @@ class Picture {
 }
 
 
-function fillPicture(picture, func, palette) {
-  let newPicture = {};
+function fillPicture(picture, fn, palette) {
+  let newPicture = picture;
   if (picture.pixels) {
     newPicture = picture.clone();
   }
-  else {
-    newPicture = picture;
-  }
-  newPicture.pixels = func(picture.size).map((val) => new Cell(palette, val));
+  newPicture.pixels = fn(picture.size).map((val) => new Cell(palette, val,));
   return newPicture;
 }
 

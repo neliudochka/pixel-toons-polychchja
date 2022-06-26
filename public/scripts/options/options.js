@@ -1,19 +1,8 @@
-import { CellAge } from './cell.js';
-import { Color } from './color.js';
+import { CANVAS_OPTIONS } from './canvasOptions.js';
+import { CellAge } from '../cell.js';
+import { Color } from '../color.js';
 
 const SCALE = 50;
-const CANVAS_OPTIONS = {
-  polotno: {
-    type: 'canvas',
-    container: 'polotno-container',
-    handler: (event, canv) => canv.drawPixel(event)
-  },
-  palitra: {
-    type: 'canvas',
-    container: 'palitra-container',
-    handler: (event, canv) => canv.pickColor(event)
-  }
-};
 const PALITRA_HEIGHT = 1;
 
 

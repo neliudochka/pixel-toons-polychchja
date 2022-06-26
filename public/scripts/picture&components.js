@@ -27,7 +27,7 @@ function fillPicture(picture, func, palette) {
   else {
     newPicture = picture;
   }
-  newPicture.pixels = func(picture.size).map((val) => new Cell(val, palette));
+  newPicture.pixels = func(picture.size).map((val) => new Cell(palette, val));
   return newPicture;
 }
 

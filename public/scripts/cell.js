@@ -9,9 +9,9 @@ const CellAge = {
 };
 
 class Cell {
-  constructor(state = CellState.DEAD, palette) {
-    this.state = state;
+  constructor(palette, state = CellState.DEAD) {
     this.palette = palette;
+    this.state = state;
   }
 
   get state() {
@@ -47,7 +47,7 @@ class Cell {
   }
 
   clone() {
-    const newCell = new Cell(this._state, this.palette);
+    const newCell = new Cell(this.palette, this._state);
     newCell.age = this.age;
     return newCell;
   }

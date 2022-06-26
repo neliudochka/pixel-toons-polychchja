@@ -1,4 +1,4 @@
-import { CellState } from './cell.js';
+import { CellAge } from './cell.js';
 import { Color } from './color.js';
 
 const Scale = 50;
@@ -36,7 +36,7 @@ class Options {
   setUpCommonOptions() {
     this.common.pixelSize = Scale;
     //brush changes the color of the cell based on its age
-    this.common.ageBrush = CellState.NEW_BORN_AGE;
+    this.common.ageBrush = CellAge.NEW_BORN_AGE;
 
   }
 

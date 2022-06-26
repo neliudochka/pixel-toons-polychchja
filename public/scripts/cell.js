@@ -1,6 +1,9 @@
 const CellState = {
   ALIVE: 'alive',
-  DEAD: 'dead',
+  DEAD: 'dead'
+};
+
+const CellAge = {
   NEW_BORN_AGE: 1,
   DEAD_AGE: 0
 };
@@ -16,18 +19,18 @@ class Cell {
   }
 
   set state(value) {
-    if (value === CellState.DEAD || value === CellState.DEAD_AGE) {
+    if (value === CellState.DEAD || value === CellAge.DEAD_AGE) {
       this._state = CellState.DEAD;
-      this.age = CellState.DEAD_AGE;
+      this.age = CellAge.DEAD_AGE;
     }
-    if (value === CellState.ALIVE || value === CellState.NEW_BORN_AGE) {
+    if (value === CellState.ALIVE || value === CellAge.NEW_BORN_AGE) {
       this._state = CellState.ALIVE;
-      this.age = CellState.NEW_BORN_AGE;
+      this.age = CellAge.NEW_BORN_AGE;
     }
   }
 
   isAlive() {
-    if (this.state === CellState.DEAD) return CellState.DEAD_AGE;
+    if (this.state === CellState.DEAD) return CellAge.DEAD_AGE;
     else return 1;
   }
 
@@ -51,15 +54,16 @@ class Cell {
 
   //only for palette and drawing
   setAge(age) {
-    if (age !== CellState.DEAD_AGE) {
+    if (age !== CellAge.DEAD_AGE) {
       this._state = CellState.ALIVE;
       this.age = age;
     } else {
       this._state = CellState.DEAD;
-      this.age = CellState.DEAD_AGE;
+      this.age = CellAge.DEAD_AGE;
     }
   }
 }
 
-export { CellState };
 export { Cell };
+export { CellState };
+export { CellAge };

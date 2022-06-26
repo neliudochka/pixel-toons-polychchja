@@ -28,7 +28,7 @@ class Canvas {
     this.picPainter.changePixelColor(coord, event);
   }
 
-  pickColor() {
+  pickColor(event) {
     const coord = this.getMousePosition(event);
     this.picPainter.changeAgeBrush(coord, event);
   }

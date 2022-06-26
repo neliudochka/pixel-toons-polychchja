@@ -1,12 +1,13 @@
 class Canvas {
-  constructor(picPainter, CanvasOptions) {
+  constructor(picPainter, CanvasType) {
     this.picPainter = picPainter;
     this.pixelSize  = this.picPainter.options.pixelSize;
-    this.createCanvas(CanvasOptions);
+    this.createCanvas(CanvasType);
   }
 
 
-  createCanvas(CanvasOptions) {
+  createCanvas(CanvasType) {
+    const CanvasOptions = this.picPainter.options.CanvasOptions[CanvasType];
     const element = document.createElement(CanvasOptions.type);
     const container = document.getElementById(CanvasOptions.container);
     container.appendChild(element);

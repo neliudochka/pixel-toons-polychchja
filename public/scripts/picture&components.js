@@ -40,13 +40,8 @@ function randomCells(size) {
   return array;
 }
 
-//olly for palitra
-function increasingAgeCells(size) {
-  return [...new Array(size).keys()];
-}
 
 export { Picture };
 export { fillPicture };
 export { deadCells };
 export { randomCells };
-export { increasingAgeCells };

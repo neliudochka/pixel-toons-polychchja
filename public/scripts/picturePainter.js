@@ -4,9 +4,9 @@ const CONTEXT = '2d';
 
 
 class PicturePainter {
-  constructor(picture, options, CanvasOptions) {
+  constructor(picture, options, CanvasType) {
     this.options = options;
-    this.canvas = new Canvas(this, CanvasOptions).canvas;
+    this.canvas = new Canvas(this, CanvasType).canvas;
     this.updateStatus(picture);
   }
 

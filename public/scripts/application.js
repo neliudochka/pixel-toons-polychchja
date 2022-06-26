@@ -7,19 +7,9 @@ import { Picture,
   deadCells,
 } from './picture&components.js';
 
-const CanvasOptions = {
-  'canvas': {
-    name: 'canvas',
-    type: 'canvas',
-    container: 'canvas-container',
-    handler: '(event) => this.drawPixel(event)'
-  },
-  'palitra': {
-    name: 'palitra',
-    type: 'canvas',
-    container: 'palitra-container',
-    handler: '(event) => this.pickColor(event)'
-  }
+const CavasType = {
+  canvas: 'canvas',
+  palitra: 'palitra'
 };
 
 class Application {
@@ -27,7 +17,7 @@ class Application {
     this.options = options;
     this.picPainter = new PicturePainter(new Picture(this.options.canvasWidth,
       this.options.canvasHeight,
-      this.options.palette), this.options, CanvasOptions.canvas);
+      this.options.palette), this.options, CavasType.canvas);
     this.setUpButtons();
     this.setUpPalitra();
   }
@@ -55,16 +45,15 @@ class Application {
     const height = 1;
 
     const palitraPic = new Picture(lenght, height, pallete);
-    increasingAgeCells(lenght).map((i) => palitraPic.pixels[i].setAge(i));
-    console.log(palitraPic);
+    increasingNumbArr(lenght).map((i) => palitraPic.pixels[i].setAge(i));
     this.palitra = new PicturePainter(palitraPic, this.options,
-      CanvasOptions.palitra);
+      CavasType.palitra);
   }
 }
 
 
-//olly for palitra
-function increasingAgeCells(size) {
+//придумати куди засунути
+function increasingNumbArr(size) {
   return [...new Array(size).keys()];
 }
 

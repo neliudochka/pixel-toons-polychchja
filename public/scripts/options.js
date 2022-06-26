@@ -2,23 +2,35 @@ import { Color } from './color.js';
 import { CellState } from './cell.js';
 
 const Scale = 50;
+const CanvasOptions = {
+  'canvas': {
+    type: 'canvas',
+    container: 'canvas-container',
+    handler: '(event) => this.drawPixel(event)'
+  },
+  'palitra': {
+    type: 'canvas',
+    container: 'palitra-container',
+    handler: '(event) => this.pickColor(event)'
+  }
+};
+
 
 class Options {
   constructor(canvasHeight, deadColor, aliveColor, hueNumber) {
     canvasHeight = parseInt(canvasHeight);
     hueNumber = parseInt(hueNumber);
 
-    this.setPixelSize();
+    this.pixelSize = Scale;
     this.canvasHeight = canvasHeight;
     this.setCanvasWidth();
     this.setPallette(deadColor, aliveColor, hueNumber);
 
     //brush changes the color of the cell based on its age
     this.ageBrush = CellState.newBornAge;
-  }
 
-  setPixelSize() {
-    this.pixelSize = Scale;
+    //option for different type of canvaces
+    this.CanvasOptions = CanvasOptions;
   }
 
   setCanvasWidth() {

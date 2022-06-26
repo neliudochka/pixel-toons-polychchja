@@ -12,9 +12,9 @@ class Picture {
     return this.pixels[x + y * this.width];
   }
 
-  copy() {
+  clone() {
     return new Picture(this.width,
-      this.height, this.palette, this.pixels.map((cell) => cell.copy()));
+      this.height, this.palette, this.pixels.map((cell) => cell.clone()));
   }
 }
 
@@ -22,7 +22,7 @@ class Picture {
 function fillPicture(picture, func, palette) {
   let newPicture = {};
   if (picture.pixels) {
-    newPicture = picture.copy();
+    newPicture = picture.clone();
   } else { newPicture = picture; }
   newPicture.pixels = func(picture.size).map((val) => new Cell(val, palette));
   return newPicture;

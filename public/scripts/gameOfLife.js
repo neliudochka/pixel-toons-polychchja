@@ -18,7 +18,7 @@ const RULE_1 = 2;
 const RULE_2 = 3;
 
 function gameOfLife(picture) {
-  const clonePicture = picture.copy();
+  const clonePicture = picture.clone();
   const arraySize = clonePicture.size;
   const arrayWidth = clonePicture.width;
 

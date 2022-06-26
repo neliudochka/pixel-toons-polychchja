@@ -46,7 +46,7 @@ class Cell {
     return this.palette[arrLen - 1];
   }
 
-  copy() {
+  clone() {
     const newCell = new Cell(this._state, this.palette);
     newCell.age = this.age;
     return newCell;

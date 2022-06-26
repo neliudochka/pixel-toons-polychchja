@@ -1,5 +1,5 @@
 function reflectPicture(picture) {
-  const clonePicture = picture.copy();
+  const clonePicture = picture.clone();
   const newPixels = [];
 
   let limit = clonePicture.width;
@@ -19,7 +19,7 @@ function reflectPicture(picture) {
     }
     newPixels.push(...row);
     if (odd) newPixels.push(clonePicture.pixels[index + limit]);
-    const reverseRow = row.map((cell) => cell.copy()).reverse();
+    const reverseRow = row.map((cell) => cell.clone()).reverse();
     newPixels.push(...reverseRow);
   }
 

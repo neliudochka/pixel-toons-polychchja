@@ -23,21 +23,12 @@ You can not only draw, but also use one of the 4 algorithms: <br>
   -reflect, <br>
   -game of life (https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)<br>
   
-<hr>
+<hr>![Screenshot from 2022-06-26 05-10-45](https://user-images.githubusercontent.com/90915275/175796526-c78ef126-aec7-41cb-966b-39c11f5e2590.png)
+![Screenshot from 2022-06-26 05-10-50](https://user-images.githubusercontent.com/90915275/175796528-cd03e9b5-6526-484c-8403-d0f9b437b55e.png)
+![Screenshot from 2022-06-26 05-10-57](https://user-images.githubusercontent.com/90915275/175796531-4a235945-e9bd-4878-976d-2914945e37aa.png)
+![Screenshot from 2022-06-26 05-11-01](https://user-images.githubusercontent.com/90915275/175796533-527c2c9f-d0f7-4668-9b1b-9b0fa51c1d2f.png)
+![Screenshot from 2022-06-26 05-19-19](https://user-images.githubusercontent.com/90915275/175796591-f97996ed-8aeb-454f-b36e-9312a26e2a0b.png)
+
 Приклади | Examples<br>
 
-![Screenshot from 2022-06-22 05-19-31](https://user-images.githubusercontent.com/90915275/174929297-19d80595-25d0-4f04-8b0d-4ebacdbfe2a0.png)
 
-![Screenshot from 2022-06-22 05-12-07](https://user-images.githubusercontent.com/90915275/174928649-0d8f92e7-29e9-4a6f-a4c2-f02735434844.png)
-
-![Screenshot from 2022-06-22 05-16-09](https://user-images.githubusercontent.com/90915275/174929486-a81b38c7-5123-45a9-bae0-638f4ba3aeb3.png)
-
-![Screenshot from 2022-06-22 05-16-19](https://user-images.githubusercontent.com/90915275/174929505-981235f0-6590-40f8-a22c-06e2f56518b0.png)
-
-![Screenshot from 2022-06-22 05-12-52](https://user-images.githubusercontent.com/90915275/174928673-3d17469a-db45-49cb-b446-f69357248c5e.png)
-
-![Screenshot from 2022-06-22 05-13-02](https://user-images.githubusercontent.com/90915275/174928725-4c424cc9-6046-4146-81b7-c3dbad0b3eca.png)
-
-![Screenshot from 2022-06-22 05-13-31](https://user-images.githubusercontent.com/90915275/174928744-18b4a94c-07a3-4dbf-99a7-cd7381e04b9e.png)
-
-Залишилося зробити: можливість обирати палетку, редизайн, експорт зображень, юніт тести 

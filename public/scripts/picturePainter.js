@@ -1,12 +1,11 @@
-import { Canvas } from './canvas.js';
-
 const CONTEXT = '2d';
 
 
 class PicturePainter {
-  constructor(picture, commonOpt, typeOpt) {
+  constructor(commonOpt, canvas, picture) {
     this.options = commonOpt;
-    this.canvas = new Canvas(this, typeOpt).canvas;
+    canvas.bindPicPainter(this);
+    this.canvas = canvas.canvas;
     this.updateStatus(picture);
   }
 

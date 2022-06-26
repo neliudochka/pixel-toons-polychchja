@@ -6,8 +6,7 @@ const CanvasOptions = {
   'polotno': {
     type: 'canvas',
     container: 'polotno-container',
-    handler(event) { console.log('log') },
-    //this.drawPixel(event);
+    handler: '(event) => this.drawPixel(event)'
   },
   'palitra': {
     type: 'canvas',

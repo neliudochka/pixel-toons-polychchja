@@ -24,9 +24,13 @@ You can not only draw, but also use one of the 4 algorithms: <br>
   -game of life (https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)<br>
   
 <hr>![Screenshot from 2022-06-26 05-10-45](https://user-images.githubusercontent.com/90915275/175796526-c78ef126-aec7-41cb-966b-39c11f5e2590.png)
+
 ![Screenshot from 2022-06-26 05-10-50](https://user-images.githubusercontent.com/90915275/175796528-cd03e9b5-6526-484c-8403-d0f9b437b55e.png)
+
 ![Screenshot from 2022-06-26 05-10-57](https://user-images.githubusercontent.com/90915275/175796531-4a235945-e9bd-4878-976d-2914945e37aa.png)
+
 ![Screenshot from 2022-06-26 05-11-01](https://user-images.githubusercontent.com/90915275/175796533-527c2c9f-d0f7-4668-9b1b-9b0fa51c1d2f.png)
+
 ![Screenshot from 2022-06-26 05-19-19](https://user-images.githubusercontent.com/90915275/175796591-f97996ed-8aeb-454f-b36e-9312a26e2a0b.png)
 
 Приклади | Examples<br>

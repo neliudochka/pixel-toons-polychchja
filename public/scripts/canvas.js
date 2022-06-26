@@ -13,12 +13,11 @@ class Canvas {
   }
 
   callMouseDown() {
-    console.log('you are a fool! you need to use child class!!');
+    console.log('oh no... you chose the parent class (Canvas)');
   }
 
   bindPicPainter(picPainter) {
     this.picPainter = picPainter;
-    console.log(picPainter);
     this.pixelSize  = this.picPainter.options.pixelSize;
   }
 
@@ -34,7 +33,6 @@ class Canvas {
 
 class Polotno extends Canvas {
   callMouseDown(event) {
-    console.log('polotno');
     this.drawPixel(event);
   }
 
@@ -46,7 +44,6 @@ class Polotno extends Canvas {
 
 class Palitra extends Canvas {
   callMouseDown(event) {
-    console.log('palitra');
     this.pickColor(event);
   }
 

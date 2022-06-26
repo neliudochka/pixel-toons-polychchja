@@ -5,6 +5,7 @@ class Picture {
     this.width = width;
     this.height = height;
     this.size = width * height;
+    this.palette = palette;
     this.pixels = pixels || fillPicture(this, deadCells, palette).pixels;
   }
 

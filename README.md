@@ -26,7 +26,7 @@ You can not only draw, but also use one of the 4 algorithms: <br>
   
 Приклади | Examples<br>
   
-<hr>![Screenshot from 2022-06-26 05-10-45](https://user-images.githubusercontent.com/90915275/175796852-718f6176-d5b1-4932-a9ea-ec6c04409af2.png)
+<hr>
 
 ![Screenshot from 2022-06-26 05-10-45](https://user-images.githubusercontent.com/90915275/175796526-c78ef126-aec7-41cb-966b-39c11f5e2590.png)
 
@@ -40,5 +40,5 @@ You can not only draw, but also use one of the 4 algorithms: <br>
 
 ![Screenshot from 2022-06-26 05-26-40](https://user-images.githubusercontent.com/90915275/175796808-b2f55531-9fe4-4e05-86d7-1ba4d0f6934f.png)
 
-
+![Screenshot from 2022-06-26 23-13-38](https://user-images.githubusercontent.com/90915275/175832301-be949c7f-dda8-42f9-9c9d-2bc823f2846c.png)
 

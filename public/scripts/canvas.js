@@ -1,24 +1,27 @@
 class Canvas {
-  constructor(picPainter) {
+  constructor(picPainter, typeOpt) {
     this.picPainter = picPainter;
     this.pixelSize  = this.picPainter.options.pixelSize;
-    this.createCanvas();
+    this.createCanvas(typeOpt);
   }
 
 
-  //I`ll rewrite this one
-  createCanvas() {
-    const canvas = document.createElement('canvas');
-    const canvasContainer = document.getElementById('canvas-container');
-    canvasContainer.appendChild(canvas);
-    canvas.addEventListener('mousedown',
-      (event) => this.drawPixel(event));
-    this.canvas = canvas;
+  createCanvas(typeOpt) {
+    const element = document.createElement(typeOpt.type);
+    const container = document.getElementById(typeOpt.container);
+    container.appendChild(element);
+    element.addEventListener('mousedown', eval(typeOpt.handler));
+    this.canvas = element;
   }
 
   drawPixel(event) {
     const coord = this.getMousePosition(event);
     this.picPainter.changePixelColor(coord, event);
+  }
+
+  pickColor() {
+    const coord = this.getMousePosition(event);
+    this.picPainter.changeAgeBrush(coord, event);
   }
 
   getMousePosition(event) {
@@ -28,6 +31,7 @@ class Canvas {
       y: Math.floor((event.clientY - canPos.top) / this.pixelSize)
     };
   }
+
 }
 
 export { Canvas };

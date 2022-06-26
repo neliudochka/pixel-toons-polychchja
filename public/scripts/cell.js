@@ -1,10 +1,12 @@
 const CellState = {
-  ALIVE: 'alive',
-  DEAD: 'dead'
+  alive: 'alive',
+  dead: 'dead',
+  newBornAge: 1,
+  deadAge: 0
 };
 
 class Cell {
-  constructor(state = CellState.DEAD, palette) {
+  constructor(state = CellState.dead, palette) {
     this.state = state;
     this.palette = palette;
   }
@@ -14,23 +16,23 @@ class Cell {
   }
 
   set state(value) {
-    if (value === CellState.DEAD || value === 0) {
-      this._state = CellState.DEAD;
-      this.age = 0;
+    if (value === CellState.dead || value === CellState.deadAge) {
+      this._state = CellState.dead;
+      this.age = CellState.deadAge;
     }
-    if (value === CellState.ALIVE || value === 1) {
-      this._state = CellState.ALIVE;
-      this.age = 1;
+    if (value === CellState.alive || value === CellState.newBornAge) {
+      this._state = CellState.alive;
+      this.age = CellState.newBornAge;
     }
   }
 
   isAlive() {
-    if (this.state === CellState.DEAD) return 0;
+    if (this.state === CellState.dead) return CellState.deadAge;
     else return 1;
   }
 
   makeOld() {
-    if (this._state === CellState.ALIVE) {
+    if (this._state === CellState.alive) {
       this.age++;
     }
   }
@@ -45,6 +47,17 @@ class Cell {
     const newCell = new Cell(this._state, this.palette);
     newCell.age = this.age;
     return newCell;
+  }
+
+  //only for palette and drawing
+  setAge(age) {
+    if (age !== CellState.deadAge) {
+      this._state = CellState.alive;
+      this.age = age;
+    } else {
+      this._state = CellState.dead;
+      this.age = CellState.deadAge;
+    }
   }
 }
 

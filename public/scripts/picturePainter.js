@@ -1,10 +1,12 @@
 import { Canvas } from './canvas.js';
 
+const CONTEXT = '2d';
 
-class PicturePainer {
-  constructor(picture, options) {
-    this.options = options;
-    this.canvas = new Canvas(this).canvas;
+
+class PicturePainter {
+  constructor(picture, commonOpt, typeOpt) {
+    this.options = commonOpt;
+    this.canvas = new Canvas(this, typeOpt).canvas;
     this.updateStatus(picture);
   }
 
@@ -19,9 +21,9 @@ class PicturePainer {
 
   changePixelColor({ x, y }, event) {
     const canvas = event.target;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext(CONTEXT);
 
-    this.picture.pixel(x, y).state = 1;
+    this.picture.pixel(x, y).setAge(this.options.ageBrush);
     ctx.fillStyle = this.picture.pixel(x, y).color();
     ctx.fillRect(
       x * this.options.pixelSize,
@@ -35,7 +37,7 @@ class PicturePainer {
 
     this.canvas.width = this.picture.width * pixelSize;
     this.canvas.height = this.picture.height * pixelSize;
-    const ctx = this.canvas.getContext('2d');
+    const ctx = this.canvas.getContext(CONTEXT);
     for (let y = 0; y < this.picture.height; y++) {
       for (let x = 0; x < this.picture.width; x++) {
         ctx.fillStyle = this.picture.pixel(x, y).color();
@@ -47,7 +49,11 @@ class PicturePainer {
       }
     }
   }
+
+  changeAgeBrush({ x, y }) {
+    this.options.ageBrush = this.picture.pixel(x, y).age;
+  }
 }
 
 
-export { PicturePainer };
+export { PicturePainter };

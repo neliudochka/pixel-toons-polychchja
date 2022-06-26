@@ -1,17 +1,16 @@
 class Canvas {
-  constructor(picPainter, CanvasType) {
+  constructor(picPainter, typeOpt) {
     this.picPainter = picPainter;
     this.pixelSize  = this.picPainter.options.pixelSize;
-    this.createCanvas(CanvasType);
+    this.createCanvas(typeOpt);
   }
 
 
-  createCanvas(CanvasType) {
-    const CanvasOptions = this.picPainter.options.CanvasOptions[CanvasType];
-    const element = document.createElement(CanvasOptions.type);
-    const container = document.getElementById(CanvasOptions.container);
+  createCanvas(typeOpt) {
+    const element = document.createElement(typeOpt.type);
+    const container = document.getElementById(typeOpt.container);
     container.appendChild(element);
-    element.addEventListener('mousedown', eval(CanvasOptions.handler));
+    element.addEventListener('mousedown', eval(typeOpt.handler));
     this.canvas = element;
   }
 

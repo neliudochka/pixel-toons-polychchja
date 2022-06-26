@@ -49,7 +49,7 @@ class Cell {
     return newCell;
   }
 
-  //only for pallete and drawing
+  //only for palette and drawing
   setAge(age) {
     if (age !== CellState.deadAge) {
       this._state = CellState.alive;

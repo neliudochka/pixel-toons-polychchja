@@ -4,33 +4,48 @@ import { PicturePainter } from './picturePainter.js';
 import { Picture,
   fillPicture,
   randomCells,
-  deadCells,
-} from './picture&components.js';
+  deadCells } from './picture&components.js';
+import { increasingNumbArr } from './myFunctions.js';
 
-const CavasType = {
-  canvas: 'canvas',
-  palitra: 'palitra'
-};
 
 class Application {
   constructor(options) {
     this.options = options;
-    this.picPainter = new PicturePainter(new Picture(this.options.canvasWidth,
-      this.options.canvasHeight,
-      this.options.palette), this.options, CavasType.canvas);
-    this.setUpButtons();
-    this.setUpPalitra();
+    //виношу, бо багато де використовується
+    this.palette = options.common.palette;
+
+    this.createCanvas();
+    this.createPalitra();
+    this.createButtons();
   }
 
-  setUpButtons() {
+  createCanvas() {
+    const canvOpt = this.options.canvas;
+    this.picPainter = new PicturePainter(
+      new Picture(canvOpt.canvasWidth, canvOpt.canvasHeight, this.palette),
+      this.options.common, canvOpt);
+  }
+
+  createPalitra() {
+    const palOpt = this.options.palitra;
+
+    console.log(palOpt);
+    const palitraPic = new Picture(palOpt.length,
+      palOpt.height, this.palette);
+    increasingNumbArr(palOpt.length)
+      .map((i) => palitraPic.pixels[i].setAge(i));
+    this.palitra = new PicturePainter(palitraPic, this.options.common, palOpt);
+  }
+
+  createButtons() {
     const buttonsId = ['restart', 'random', 'reflect', 'game-of-life'];
     const handlers = {
       'restart': () => this.picPainter.updateStatus(fillPicture(this.picPainter
-        .picture, deadCells, this.options.palette)),
+        .picture, deadCells, this.palette)),
       'random':  () => this.picPainter.updateStatus(fillPicture(this.picPainter
-        .picture, randomCells, this.options.palette)),
+        .picture, randomCells, this.palette)),
       'reflect': () => this.picPainter
-        .updateStatus(reflectPicture(this.picPainter)),
+        .updateStatus(reflectPicture(this.picPainter.picture)),
       'game-of-life': () => this.picPainter
         .updateStatus(gameOfLife(this.picPainter.picture))
     };
@@ -39,22 +54,8 @@ class Application {
       .addEventListener('click', handlers[id]));
   }
 
-  setUpPalitra() {
-    const pallete = this.options.palette;
-    const lenght = pallete.length;
-    const height = 1;
 
-    const palitraPic = new Picture(lenght, height, pallete);
-    increasingNumbArr(lenght).map((i) => palitraPic.pixels[i].setAge(i));
-    this.palitra = new PicturePainter(palitraPic, this.options,
-      CavasType.palitra);
-  }
 }
 
-
-//придумати куди засунути
-function increasingNumbArr(size) {
-  return [...new Array(size).keys()];
-}
 
 export { Application };

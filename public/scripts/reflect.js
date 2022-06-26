@@ -1,12 +1,12 @@
-function reflectPicture(picCanv) {
-  const clonePicture = picCanv.picture.copy();
+function reflectPicture(picture) {
+  const clonePicture = picture.copy();
   const newPixels = [];
 
   let limit = clonePicture.width;
 
   //condition in order to prevent iternal reflect
-  if (clonePicture.width === picCanv.options.fullCanvasWidth) {
-    limit = picCanv.options.canvasWidth;
+  if (clonePicture.width === clonePicture.height) {
+    limit = Math.round(clonePicture.width / 2);
   }
 
   const odd = clonePicture.height % 2 !== 0;

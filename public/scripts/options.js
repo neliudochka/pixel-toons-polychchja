@@ -21,35 +21,50 @@ class Options {
     canvasHeight = parseInt(canvasHeight);
     hueNumber = parseInt(hueNumber);
 
-    this.pixelSize = Scale;
-    this.canvasHeight = canvasHeight;
-    this.setCanvasWidth();
-    this.setPallette(deadColor, aliveColor, hueNumber);
+    //option for different type of canvaces (canvas||palitra)
+    this.canvas = CanvasOptions.canvas;
+    this.palitra = CanvasOptions.palitra;
+    this.common = {};
 
+    this.setUpPalette(deadColor, aliveColor, hueNumber);
+
+    this.setUpCommonOptions();
+    this.setUpCanvasOptions(canvasHeight);
+    this.setUpPalitraOptions();
+  }
+
+  setUpCommonOptions() {
+    this.common.pixelSize = Scale;
     //brush changes the color of the cell based on its age
-    this.ageBrush = CellState.newBornAge;
+    this.common.ageBrush = CellState.newBornAge;
 
-    //option for different type of canvaces
-    this.CanvasOptions = CanvasOptions;
   }
 
-  setCanvasWidth() {
-    this.canvasWidth = Math.round(this.canvasHeight / 2);
-    //потрібно для reflect і в майбутньому для прямокутних форм
-    this.fullCanvasWidth = this.canvasHeight;
-  }
-
-  setPallette(deadColor, aliveColor, hueNumber) {
-    this.palette = [deadColor, aliveColor];
+  setUpPalette(deadColor, aliveColor, hueNumber) {
+    const palette = [deadColor, aliveColor];
 
     const aliveHSL = Color.fromHex(aliveColor).toHSL();
     const interval = aliveHSL.L / hueNumber;
     for (let i = 1; i < hueNumber; i++) {
-      const newHSL = Color.fromHex(this.palette[i]).toHSL();
+      const newHSL = Color.fromHex(palette[i]).toHSL();
       newHSL.L -= interval;
-      this.palette[i + 1] = Color.fromHSL(newHSL).toHex();
+      palette[i + 1] = Color.fromHSL(newHSL).toHex();
     }
+    this.common.palette = palette;
   }
+
+  setUpCanvasOptions(canvasHeight) {
+    this.canvas.canvasHeight = canvasHeight;
+    this.canvas.canvasWidth = Math.round(canvasHeight / 2);
+    //потрібно для reflect і в майбутньому для прямокутних форм
+    this.canvas.fullCanvasWidth = canvasHeight;
+  }
+
+  setUpPalitraOptions() {
+    this.palitra.length = this.common.palette.length;
+    this.palitra.height = 1;
+  }
+
 }
 
 export { Options };

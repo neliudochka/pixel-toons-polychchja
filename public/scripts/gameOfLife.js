@@ -45,13 +45,14 @@ function gameOfLife(picture) {
   return clonePicture;
 }
 
-function countAlive(arrayOfCells, index, w, size) {
+function countAlive(arrayOfCells, index, width, size) {
   let numAlive = 0;
-  const row = Math.trunc(index / w) * w;
-  for (let j = row - w; j < row + w * 2; j += w) {
+  const rowFirstEl = Math.trunc(index / width) * width;
+  for (let j = rowFirstEl - width; j < rowFirstEl + width * 2; j += width) {
     for (let i = -1; i < 2; i++) {
-      numAlive += arrayOfCells[(w + i + index) % w + (size + j) % size]
-        .isAlive();
+      const column = (width + i + index) % width;
+      const row = (size + j) % size;
+      numAlive += arrayOfCells[column + row].isAlive();
     }
   }
   numAlive -= arrayOfCells[index].isAlive();

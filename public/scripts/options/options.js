@@ -1,6 +1,6 @@
 import { CANVAS_OPTIONS } from './canvasOptions.js';
-import { CellAge } from '../cell.js';
-import { Color } from '../color.js';
+import { CellAge } from '../core/cell.js';
+import { Color } from '../utils/color.js';
 
 const SCALE = 50;
 const PALITRA_HEIGHT = 1;

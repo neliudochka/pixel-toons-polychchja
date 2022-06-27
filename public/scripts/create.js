@@ -1,4 +1,4 @@
-import { EventEmitter } from './EventEmmiter.js';
+import { EventEmitter } from './utils/EventEmmiter.js';
 
 const ee = new EventEmitter();
 

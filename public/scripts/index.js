@@ -1,5 +1,5 @@
 import { ee } from './create.js';
-import { Application } from './application.js';
+import { Application } from './core/application.js';
 import { Options } from './options/options.js';
 
 window.onload = () => {

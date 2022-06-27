@@ -4,8 +4,8 @@ import { Picture,
   fillPicture,
   randomCells,
   deadCells } from './picture&components.js';
-import { reflectPicture } from './reflect.js';
-import { gameOfLife } from './gameOfLife.js';
+import { reflectPicture } from '../algorithms/reflect.js';
+import { gameOfLife } from '../algorithms/gameOfLife.js';
 
 
 class Application {

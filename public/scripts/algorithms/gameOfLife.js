@@ -1,4 +1,4 @@
-import { CellState } from './cell.js';
+import { CellState } from '../core/cell.js';
 
 /*Game of Life rules:
   1.Any live cell with fewer than two live
